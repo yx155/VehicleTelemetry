@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Maintenance</title>
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="container mt-5">
+        <h2>All Stations</h2>
+        <table class="table table-bordered" id="maintenance-table">
+            <thead>
+                <tr>
+                    <th>Alerts</th>
+                    <th>Vehicle ID</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Route</th>
+                    <th>Maintenance</th>
+                    <th>Mileage</th>
+                    <th>Driver ID</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+                document.getElementById('page-name').innerText = "Vehicle Maintenance";
+                document.getElementById('button-section').classList.remove('d-none');
+            })
+            .catch(error => console.error('Error loading the navbar:', error));
+
+        fetch('data/vehicles.json')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('maintenance-table').getElementsByTagName('tbody')[0];
+                
+                data.forEach(vehicle => {
+                    const row = document.createElement('tr');
+                    const alert = document.createElement('td');
+                    const vehicleid = document.createElement('td');
+                    const make = document.createElement('td');
+                    const model = document.createElement('td');
+                    const route = document.createElement('td');
+                    const maintenance = document.createElement('td');
+                    const mileage = document.createElement('td');
+                    const driverid = document.createElement('td');
+
+                    alert.textContent = vehicle.alert;
+                    vehicleid.textContent = vehicle.vehicleid;
+                    make.textContent = vehicle.make;
+                    model.textContent = vehicle.model;
+                    route.textContent = vehicle.route;
+                    maintenance.textContent = vehicle.maintenance;
+                    mileage.textContent = vehicle.mileage;
+                    driverid.textContent = vehicle.driverid;
+
+                    row.appendChild(alert);
+                    row.appendChild(vehicleid);
+                    row.appendChild(make);
+                    row.appendChild(model);
+                    row.appendChild(route);
+                    row.appendChild(maintenance);
+                    row.appendChild(mileage);
+                    row.appendChild(driverid);
+
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error loading JSON data:', error));
+    </script>
+
+    <style>
+       #maintenance-table thead th {
+            background-color: #f76804 !important;
+            color: white;
+        }
+    </style>
+</body>
+</html>

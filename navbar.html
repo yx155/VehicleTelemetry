@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-gradient">
+    <a class="navbar-brand ms-3" href="#">
+        <img src="images/FedExLogo.png" alt="Brand Logo" height="40">
+    </a>
+    <div class="ms-auto me-3" id="page-name"></div> 
+</nav>
+
+<div id="button-section" class="d-none">
+    <div class="row g-0">
+        <div class="col">
+            <button class="btn btn-nav w-100" onclick="window.location.href='vehicle-maintenance.html'">Vehicle Maintenance</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-nav w-100">Button 2</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-nav w-100">Button 3</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-nav w-100">Button 4</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .navbar-gradient {
+        background: linear-gradient(to right, #4d148b, #f76804);
+    }
+    .navbar-brand img {
+        height: 40px;
+        width: auto;
+    }
+    #page-name {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    #button-section {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    .btn-nav {
+        border-left-color: #4d148b;
+        border-right-color: #4d148b;
+        background-color: #f76804;
+        color: white;
+    }
+</style>

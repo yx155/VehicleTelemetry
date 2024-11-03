@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <h2 class="text-center" id="login-text">Vehicle Telemetry Login</h2>
+    <div class="center-container">
+        <form id="login-form">
+            <div class="mb-3">
+                <label for="username" class="form-label" style="font-size: 0.8rem;">USERNAME</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label" style="font-size: 0.8rem;">PASSWORD</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="col text-center mb-3">
+                <button type="submit" class="btn btn-primary rounded-button">Sign In</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+                document.getElementById('page-name').innerText = "Login";
+            })
+            .catch(error => console.error('Error loading the navbar:', error));
+
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+    <style>
+        #login-text {
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: #4d148b;
+            font-size: 3rem;
+            margin-top: 100px;
+        }
+        #login-form {
+            width: 100%;
+            max-width: 400px;
+            padding: 50px;
+            margin-top: 20px;
+        }
+    </style>
+</body>
+</html>

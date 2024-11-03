@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vice President Dashboard - Maintenance Severity</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/custom.css"> <!-- Assuming this is your theme CSS file -->
+    <style>
+        /* Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #6f42c1; /* Match theme color */
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        h2 {
+            color: #6f42c1; /* Match theme color */
+        }
+
+        #map {
+            height: 500px;
+            margin: 20px auto;
+            border: 2px solid #6f42c1;
+            max-width: 90%;
+            border-radius: 8px;
+        }
+
+        #fleet-details {
+            display: none;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 90%;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #fleet-details p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        #overview {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #overview p {
+            margin: 0;
+        }
+
+        /* Button-like styling for the map state areas */
+        .leaflet-interactive {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar will be loaded here if required -->
+    <div id="navbar-placeholder"></div>
+
+    <header>
+        <h1>Vice President Dashboard - Maintenance Severity</h1>
+    </header>
+
+    <!-- Map Section -->
+    <div id="map"></div>
+
+    <!-- Fleet Details Section (Initially Hidden) -->
+    <section id="fleet-details">
+        <h2>Fleet Overview for <span id="state-name">[State]</span></h2>
+        <div id="overview">
+            <p><strong>Total Fleet Size:</strong> <span id="total-fleet-size"></span></p>
+            <p><strong>Vehicles in Service:</strong> <span id="vehicles-in-service"></span></p>
+            <p><strong>Vehicles in Maintenance:</strong> <span id="vehicles-in-maintenance"></span></p>
+        </div>
+    </section>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([37.8, -96], 4); // Center on USA
+
+        // Add base map layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Sample state data with maintenance details
+        const statesData = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": { "name": "California", "maintenance": 50 },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [[[-124.409591, 32.534156], [-114.131211, 32.534156], [-114.131211, 42.009518], [-124.409591, 42.009518], [-124.409591, 32.534156]]]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": { "name": "Florida", "maintenance": 20 },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [[[-87.634938, 24.396308], [-80.031362, 24.396308], [-80.031362, 31.000968], [-87.634938, 31.000968], [-87.634938, 24.396308]]]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": { "name": "Texas", "maintenance": 80 },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [[[-106.645646, 25.837377], [-93.508292, 25.837377], [-93.508292, 36.500704], [-106.645646, 36.500704], [-106.645646, 25.837377]]]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": { "name": "New York", "maintenance": 10 },
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [[[-79.76259, 40.477399], [-71.852706, 40.477399], [-71.852706, 45.01585], [-79.76259, 45.01585], [-79.76259, 40.477399]]]
+                    }
+                }
+                // Add more states here...
+            ]
+        };
+
+        const stateDetails = {
+            "California": {
+                fleetSize: "300 Vehicles",
+                vehiclesInService: "250",
+                vehiclesInMaintenance: "50"
+            },
+            "Florida": {
+                fleetSize: "200 Vehicles",
+                vehiclesInService: "180",
+                vehiclesInMaintenance: "20"
+            },
+            "Texas": {
+                fleetSize: "500 Vehicles",
+                vehiclesInService: "420",
+                vehiclesInMaintenance: "80"
+            },
+            "New York": {
+                fleetSize: "100 Vehicles",
+                vehiclesInService: "90",
+                vehiclesInMaintenance: "10"
+            }
+        };
+
+        function getColor(maintenanceCount) {
+            return maintenanceCount > 75 ? '#800026' :
+                   maintenanceCount > 50 ? '#BD0026' :
+                   maintenanceCount > 25 ? '#E31A1C' :
+                   maintenanceCount > 10 ? '#FC4E2A' :
+                   '#FFEDA0'; // Light red for low maintenance
+        }
+
+        L.geoJSON(statesData, {
+            style: function (feature) {
+                return {
+                    color: "#000",
+                    weight: 1,
+                    fillOpacity: 0.7,
+                    fillColor: getColor(feature.properties.maintenance)
+                };
+            },
+            onEachFeature: function (feature, layer) {
+                layer.on({
+                    click: function () {
+                        showDetails(feature.properties.name);
+                    }
+                });
+            }
+        }).addTo(map);
+
+        function showDetails(state) {
+            const details = stateDetails[state];
+            document.getElementById('state-name').innerText = state;
+            document.getElementById('total-fleet-size').innerText = details.fleetSize;
+            document.getElementById('vehicles-in-service').innerText = details.vehiclesInService;
+            document.getElementById('vehicles-in-maintenance').innerText = details.vehiclesInMaintenance;
+
+            document.getElementById('fleet-details').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
