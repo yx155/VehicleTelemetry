@@ -36,7 +36,6 @@
             .then(data => {
                 document.getElementById('navbar-placeholder').innerHTML = data;
                 document.getElementById('page-name').innerText = "Vehicle Maintenance";
-                document.getElementById('button-section').classList.remove('d-none');
             })
             .catch(error => console.error('Error loading the navbar:', error));
 
@@ -47,7 +46,20 @@
                 
                 data.forEach(vehicle => {
                     const row = document.createElement('tr');
+
                     const alert = document.createElement('td');
+                    const alertIcon = document.createElement('img');
+                    if (vehicle.alert === 0) {
+                        alertIcon.src = 'images/success.png';
+                    } else if (vehicle.alert === -1) {
+                        alertIcon.src = 'images/warning.png';
+                    } else if (vehicle.alert === 1) {
+                        alertIcon.src = 'images/caution.png';
+                    }
+                    alertIcon.style.width = '20px';
+                    alertIcon.style.height = '20px';
+                    alert.appendChild(alertIcon);
+
                     const vehicleid = document.createElement('td');
                     const make = document.createElement('td');
                     const model = document.createElement('td');
@@ -56,7 +68,6 @@
                     const mileage = document.createElement('td');
                     const driverid = document.createElement('td');
 
-                    alert.textContent = vehicle.alert;
                     vehicleid.textContent = vehicle.vehicleid;
                     make.textContent = vehicle.make;
                     model.textContent = vehicle.model;
@@ -81,9 +92,12 @@
     </script>
 
     <style>
-       #maintenance-table thead th {
+        #maintenance-table thead th {
             background-color: #f76804 !important;
             color: white;
+        }
+        #maintenance-table td:nth-child(1) {
+            width: 80px;
         }
     </style>
 </body>

@@ -16,7 +16,6 @@
             .then(data => {
                 document.getElementById('navbar-placeholder').innerHTML = data;
                 document.getElementById('page-name').innerText = "Employee Dashboard";
-                document.getElementById('button-section').classList.remove('d-none');
             })
             .catch(error => console.error('Error loading the navbar:', error));
     </script>
