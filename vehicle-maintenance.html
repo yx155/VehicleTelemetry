@@ -10,8 +10,36 @@
 <body>
     <div id="navbar-placeholder"></div>
 
+    <div class="filter-section-container d-flex mb-4 align-items-center gap-3">
+        <div class="filter-container">
+            <label for="make-filter" class="filter-label">Make</label>
+            <select id="make-filter" class="form-select">
+                <option value="">All</option>
+            </select>
+        </div>
+        <div class="filter-container">
+            <label for="model-filter" class="filter-label">Model</label>
+            <select id="model-filter" class="form-select">
+                <option value="">All</option>
+            </select>
+        </div>
+        <div class="filter-container">
+            <label for="route-filter" class="filter-label">Route</label>
+            <select id="route-filter" class="form-select">
+                <option value="">All</option>
+            </select>
+        </div>
+        <div class="filter-container">
+            <label for="maintenance-filter" class="filter-label">Maintenance</label>
+            <select id="maintenance-filter" class="form-select">
+                <option value="">All</option>
+            </select>
+        </div>
+        <button class="btn btn-clear-filters ms-3" onclick="clearFilters()">Clear Filters</button>
+    </div>
+
     <div class="container mt-5">
-        <h2>All Stations</h2>
+        <h2 id="all-stations">All Stations</h2>
         <table class="table table-bordered" id="maintenance-table">
             <thead>
                 <tr>
@@ -44,6 +72,11 @@
             .then(data => {
                 const tableBody = document.getElementById('maintenance-table').getElementsByTagName('tbody')[0];
                 
+                const makes = new Set();
+                const models = new Set();
+                const routes = new Set();
+                const maintenances = new Set();
+
                 data.forEach(vehicle => {
                     const row = document.createElement('tr');
 
@@ -86,9 +119,71 @@
                     row.appendChild(driverid);
 
                     tableBody.appendChild(row);
+
+                    makes.add(vehicle.make);
+                    models.add(vehicle.model);
+                    routes.add(vehicle.route);
+                    maintenances.add(vehicle.maintenance);
                 });
+
+                populateFilterOptions('make-filter', makes);
+                populateFilterOptions('model-filter', models);
+                populateFilterOptions('route-filter', routes);
+                populateFilterOptions('maintenance-filter', maintenances);
             })
             .catch(error => console.error('Error loading JSON data:', error));
+
+        function populateFilterOptions(selectId, options) {
+            const select = document.getElementById(selectId);
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.textContent = option;
+                select.appendChild(opt);
+            });
+        }
+
+        document.getElementById('make-filter').addEventListener('change', addFilter);
+        document.getElementById('model-filter').addEventListener('change', addFilter);
+        document.getElementById('route-filter').addEventListener('change', addFilter);
+        document.getElementById('maintenance-filter').addEventListener('change', addFilter);
+
+        function addFilter() {
+            document.getElementById('all-stations').classList.add('d-none');
+            filterTable();
+        }
+
+        function filterTable() {
+            const makeFilter = document.getElementById('make-filter').value.toLowerCase();
+            const modelFilter = document.getElementById('model-filter').value.toLowerCase();
+            const routeFilter = document.getElementById('route-filter').value.toLowerCase();
+            const maintenanceFilter = document.getElementById('maintenance-filter').value.toLowerCase();
+
+
+            const rows = document.querySelectorAll('#maintenance-table tbody tr');
+            rows.forEach(row => {
+                const make = row.cells[2].textContent.toLowerCase();
+                const model = row.cells[3].textContent.toLowerCase();
+                const route = row.cells[4].textContent.toLowerCase();
+                const maintenance = row.cells[5].textContent.toLowerCase();
+
+                row.style.display = 
+                    (makeFilter === '' || make === makeFilter) &&
+                    (modelFilter === '' || model === modelFilter) &&
+                    (routeFilter === '' || route === routeFilter) &&
+                    (maintenanceFilter === '' || maintenance === maintenanceFilter)
+                    ? '' : 'none';
+            });
+        }
+
+        function clearFilters() {
+            document.getElementById('make-filter').value = '';
+            document.getElementById('model-filter').value = '';
+            document.getElementById('route-filter').value = '';
+            document.getElementById('maintenance-filter').value = '';
+            document.getElementById('all-stations').classList.remove('d-none');
+            filterTable();
+        }
     </script>
 
     <style>
@@ -98,6 +193,38 @@
         }
         #maintenance-table td:nth-child(1) {
             width: 80px;
+        }
+        .filter-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        }
+        .filter-label {
+            font-weight: bold;
+            color: #4d148b;
+            margin-bottom: 4px;
+        }
+        .form-select {
+            min-width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .btn-clear-filters {
+            background-color: #f76804;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            margin-top: 28px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .btn-clear-filters:hover {
+            background-color: #e65702;
+        }
+        .filter-section-container {
+            margin-top: 20px;
+            margin-left: 20px;
         }
     </style>
 </body>
