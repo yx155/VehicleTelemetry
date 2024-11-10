@@ -39,8 +39,28 @@
             .catch(error => console.error('Error loading the navbar:', error));
 
         document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            window.location.href = 'dashboard.html';
+            e.preventDefault(); 
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('data/users.json')
+                .then(response => response.json())
+                .then(users => {
+                    const user = users.find(user => user.username === username && user.password === password);
+
+                    if (user) {
+                        if (user.role === 'VP') {
+                            window.location.href = 'VP.html'; 
+                        } else {
+                            window.location.href = 'dashboard.html'; 
+                        }
+                    } else {
+                        // Handle invalid credentials (e.g., show an error message)
+                        alert("Invalid username or password!"); 
+                    }
+                })
+                .catch(error => console.error('Error fetching or parsing user data:', error));
         });
     </script>
     <style>
