@@ -72,12 +72,12 @@
             .then(data => {
                 const filteredData = data
                     .filter(vehicle => vehicle.alert === -1 || vehicle.alert === 1)
-                    .sort((a, b) => b.alert - a.alert);
+                    .sort((a, b) => a.alert - b.alert);
                 const vehicleTable = document.getElementById('vehicleTable');
                 vehicleTable.innerHTML = '';
                 filteredData.forEach(vehicle => {
                     const row = document.createElement('tr');
-                    const alertIcon = vehicle.alert === -1 ? 'images/caution.png' : 'images/warning.png';
+                    const alertIcon = vehicle.alert === -1 ? 'images/warning.png' : 'images/caution.png';
                     row.innerHTML = `<td class="alert-icon-column">${`<img src="${alertIcon}" style="width: 20px; height: 20px;">`}</td>
                                     <td>${vehicle.vehicleid}</td>
                                     <td>${vehicle.maintenance}</td>`;
