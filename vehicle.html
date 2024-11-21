@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Details</title>
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="container mt-4">
+        <div id="vehicle-details"></div>
+    </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+                document.getElementById('page-name').innerText = "Vehicle Details";
+            })
+            .catch(error => console.error('Error loading the navbar:', error));
+
+        const params = new URLSearchParams(window.location.search);
+        const vehicleid = params.get('vehicleid');
+
+        fetch('data/vehicles.json')
+            .then(response => response.json())
+            .then(data => {
+                const vehicle = data.find(v => v.vehicleid == vehicleid);
+                if (vehicle) {
+                    const alertIcon = vehicle.alert === 0 
+                        ? 'images/success.png' 
+                        : vehicle.alert === -1 
+                            ? 'images/warning.png' 
+                            : 'images/caution.png';
+                    document.getElementById('vehicle-details').innerHTML = `
+                        <div class="header-container">
+                            <img src="${alertIcon}" alt="Alert Icon" class="alert-icon">
+                            <h1>${vehicle.maintenance == "" ? "No Maintenance Required" : vehicle.maintenance}</h1>
+                        </div>
+                        <p><strong>Vehicle ID:</strong> ${vehicleid}</p>
+                        <p><strong>Make:</strong> ${vehicle.make}</p>
+                        <p><strong>Model:</strong> ${vehicle.model}</p>
+                        <p><strong>Route:</strong> ${vehicle.route}</p>
+                        <p><strong>Mileage:</strong> ${vehicle.mileage}</p>
+                        <p><strong>Driver ID:</strong> ${vehicle.driverid}</p>
+                    `;
+                } else {
+                    document.getElementById('vehicle-details').innerHTML = `
+                        <h1>Vehicle not found</h1>
+                    `;
+                }
+            })
+            .catch(error => console.error('Error loading vehicle data:', error));
+    </script>
+
+    <style>
+        .header-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .alert-icon {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</body>
+</html>

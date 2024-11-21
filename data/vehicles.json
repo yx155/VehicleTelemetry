@@ -30,7 +30,7 @@
     "driverid": 6183
   },
   {
-    "alert": 0,
+    "alert": -1,
     "vehicleid": 1178,
     "make": "Ford",
     "model": "p900",
@@ -90,7 +90,7 @@
     "driverid": 6141
   },
   {
-    "alert": 0,
+    "alert": -1,
     "vehicleid": 1149,
     "make": "Ford",
     "model": "p900",
@@ -145,7 +145,7 @@
     "make": "Ford",
     "model": "Zevo 600",
     "route": 3,
-    "maintenance": "Oil change",
+    "maintenance": "",
     "mileage": 1166,
     "driverid": 6089
   },
@@ -265,7 +265,7 @@
     "make": "Ford",
     "model": "p900",
     "route": 2,
-    "maintenance": "Oil change",
+    "maintenance": "",
     "mileage": 393,
     "driverid": 6151
   },
@@ -305,7 +305,7 @@
     "make": "Ford",
     "model": "Zevo 600",
     "route": 4,
-    "maintenance": "Oil change",
+    "maintenance": "",
     "mileage": 2490,
     "driverid": 6195
   },
@@ -335,7 +335,7 @@
     "make": "Ford",
     "model": "Zevo 600",
     "route": 2,
-    "maintenance": "Oil change",
+    "maintenance": "",
     "mileage": 845,
     "driverid": 6121
   },
@@ -425,7 +425,7 @@
     "make": "Ford",
     "model": "p900",
     "route": 4,
-    "maintenance": "Oil change",
+    "maintenance": "",
     "mileage": 2576,
     "driverid": 6110
   },
@@ -495,7 +495,7 @@
     "make": "BrightDrop",
     "model": "Zevo 600",
     "route": 3,
-    "maintenance": "Oil change",
+    "maintenance": "",
     "mileage": 1200,
     "driverid": 6053
   },

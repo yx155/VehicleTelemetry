@@ -78,9 +78,14 @@
                 filteredData.forEach(vehicle => {
                     const row = document.createElement('tr');
                     const alertIcon = vehicle.alert === -1 ? 'images/warning.png' : 'images/caution.png';
-                    row.innerHTML = `<td class="alert-icon-column">${`<img src="${alertIcon}" style="width: 20px; height: 20px;">`}</td>
-                                    <td>${vehicle.vehicleid}</td>
-                                    <td>${vehicle.maintenance}</td>`;
+                    row.innerHTML = `
+                        <td class="alert-icon-column">
+                            <img src="${alertIcon}" style="width: 20px; height: 20px;">
+                        </td>
+                        <td>
+                            <a href="vehicle.html?vehicleid=${vehicle.vehicleid}" style="color: #007bff;"> ${vehicle.vehicleid} </a>
+                        </td>
+                        <td>${vehicle.maintenance}</td>`;
                     vehicleTable.appendChild(row);
                 });
             })

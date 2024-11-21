@@ -78,6 +78,10 @@
         fetch('data/vehicles.json')
             .then(response => response.json())
             .then(data => {
+                data.sort((a, b) => {
+                    const order = [-1, 1, 0];
+                    return order.indexOf(a.alert) - order.indexOf(b.alert);
+                });
                 const tableBody = document.getElementById('maintenance-table').getElementsByTagName('tbody')[0];
                 
                 const makes = new Set();
@@ -109,7 +113,12 @@
                     const mileage = document.createElement('td');
                     const driverid = document.createElement('td');
 
-                    vehicleid.textContent = vehicle.vehicleid;
+                    const vehicleLink = document.createElement('a');
+                    vehicleLink.href = `vehicle.html?vehicleid=${vehicle.vehicleid}`;
+                    vehicleLink.textContent = vehicle.vehicleid;
+                    vehicleLink.style.color = '#007bff';
+                    vehicleid.appendChild(vehicleLink);
+
                     make.textContent = vehicle.make;
                     model.textContent = vehicle.model;
                     route.textContent = vehicle.route;
