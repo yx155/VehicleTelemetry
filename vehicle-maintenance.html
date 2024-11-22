@@ -48,7 +48,7 @@
 
     <div class="container mt-5">
         <h2 id="all-stations">All Stations</h2>
-        <table class="table table-bordered" id="maintenance-table">
+        <table class="table table-bordered table-main" id="maintenance-table">
             <thead>
                 <tr>
                     <th>Alerts</th>
@@ -114,7 +114,7 @@
                     const driverid = document.createElement('td');
 
                     const vehicleLink = document.createElement('a');
-                    vehicleLink.href = `vehicle.html?vehicleid=${vehicle.vehicleid}`;
+                    vehicleLink.href = `vehicle.html?vehicleid=${vehicle.vehicleid}&source=maintenance`;
                     vehicleLink.textContent = vehicle.vehicleid;
                     vehicleLink.style.color = '#007bff';
                     vehicleid.appendChild(vehicleLink);
@@ -214,10 +214,6 @@
     </script>
 
     <style>
-        #maintenance-table thead th {
-            background-color: #f76804 !important;
-            color: white;
-        }
         #maintenance-table td:nth-child(1) {
             width: 80px;
         }

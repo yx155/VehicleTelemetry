@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Details</title>
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <div class="container mt-4">
+        <div class="mb-3">
+            <button onclick="window.location.href='routes.html'" class="back-button">← Back</button>
+        </div>
+        <div id="route-details"></div>
+    </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+                document.getElementById('page-name').innerText = "Route Details";
+            })
+            .catch(error => console.error('Error loading the navbar:', error));
+
+        const params = new URLSearchParams(window.location.search);
+        const date = params.get('date');
+
+        fetch('data/routes.json')
+            .then(response => response.json())
+            .then(data => {
+                const r = data.find(d => d.date == date);
+                if (r) {
+                    document.getElementById('route-details').innerHTML = `
+                        <div class="header-container">
+                            <h1>Details on ${r.date}</h1>
+                        </div>
+                        <p><strong>Courier ID:</strong> ${r.courier.id}</p>
+                    `;
+                } else {
+                    document.getElementById('route-details').innerHTML = `
+                        <h1>Date not found</h1>
+                    `;
+                }
+            })
+            .catch(error => console.error('Error loading route data:', error));
+    </script>
+
+    <style>
+    </style>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routes</title>
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+    
+    <div class="container mt-5">
+        <table class="table table-bordered table-main" id="routes-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Courier ID</th>
+                    <th>Courier Name</th>
+                    <th>Route</th>
+                    <th>Vehicle ID</th>
+                    <th>Departure Time</th>
+                    <th>Return Time</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+                document.getElementById('page-name').innerText = "Routes";
+            })
+            .catch(error => console.error('Error loading the navbar:', error));
+
+        fetch('data/routes.json')
+            .then(response => response.json())
+            .then(data => {
+                // data.sort((a, b) => {
+                //     const order = [-1, 1, 0];
+                //     return order.indexOf(a.alert) - order.indexOf(b.alert);
+                // });
+                const tableBody = document.getElementById('routes-table').getElementsByTagName('tbody')[0];
+
+                data.forEach(r => {
+                    const row = document.createElement('tr');
+
+                    const date = document.createElement('td');
+                    const courierid = document.createElement('td');
+                    const courierName = document.createElement('td');
+                    const route = document.createElement('td');
+                    const vehicleid = document.createElement('td');
+                    const departureTime = document.createElement('td');
+                    const returnTime = document.createElement('td');
+                    const details = document.createElement('td');
+                    details.classList.add('text-center');
+
+                    const vehicleLink = document.createElement('a');
+                    vehicleLink.href = `vehicle.html?vehicleid=${r.vehicle_id}&source=routes`;
+                    vehicleLink.textContent = r.vehicle_id;
+                    vehicleLink.style.color = '#007bff';
+                    vehicleid.appendChild(vehicleLink);
+
+                    date.textContent = r.date;
+                    courierid.textContent = r.courier.id;
+                    courierName.textContent = r.courier.name;
+                    route.textContent = r.courier.route_number;
+                    departureTime.textContent = r.departure_time;
+                    returnTime.textContent = r.return_time;
+
+                    const detailsButton = document.createElement('a');
+                    detailsButton.href = `route-details.html?date=${encodeURIComponent(r.date)}`;
+                    detailsButton.textContent = 'Details';
+                    detailsButton.classList.add('btn', 'btn-primary');
+                    details.appendChild(detailsButton);
+
+                    row.appendChild(date);
+                    row.appendChild(courierid);
+                    row.appendChild(courierName);
+                    row.appendChild(route);
+                    row.appendChild(vehicleid);
+                    row.appendChild(departureTime);
+                    row.appendChild(returnTime);
+                    row.appendChild(details);
+
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error loading JSON data:', error));
+    </script>
+
+    <style>
+       
+    </style>
+</body>
+</html>

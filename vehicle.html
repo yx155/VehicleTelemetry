@@ -11,6 +11,9 @@
     <div id="navbar-placeholder"></div>
 
     <div class="container mt-4">
+        <div class="mb-3">
+            <button onclick="goBack()" class="back-button">← Back</button>
+        </div>
         <div id="vehicle-details"></div>
     </div>
 
@@ -55,6 +58,13 @@
                 }
             })
             .catch(error => console.error('Error loading vehicle data:', error));
+        
+        function goBack() {
+            const params = new URLSearchParams(window.location.search);
+            const source = params.get('source');
+            const backUrl = source === 'routes' ? 'routes.html' : 'vehicle-maintenance.html';
+            window.location.href = backUrl;
+        }
     </script>
 
     <style>

@@ -12,3 +12,16 @@
     size: 5px;
 }
 
+.table-main thead th {
+    background-color: #f76804 !important;
+    color: white;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: purple;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
