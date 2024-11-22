@@ -3,86 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vice President Dashboard - Maintenance Severity</title>
+    <title>Leaflet USA Map with Maintenance Severity</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="css/custom.css"> <!-- Assuming this is your theme CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Page Styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-
-        header {
-            background-color: #6f42c1; /* Match theme color */
-            padding: 20px;
-            color: white;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin: 0;
-        }
-
-        h2 {
-            color: #6f42c1; /* Match theme color */
-        }
-
         #map {
             height: 500px;
-            margin: 20px auto;
-            border: 2px solid #6f42c1;
-            max-width: 90%;
-            border-radius: 8px;
         }
-
-        #fleet-details {
-            display: none;
-            margin: 20px auto;
-            padding: 20px;
-            max-width: 90%;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+        #fleet-details, #date-filter, #chart-container {
+            margin-top: 20px;
         }
-
-        #fleet-details p {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+        .navbar-gradient {
+            background: linear-gradient(to right, #4d148b, #f76804);
+            padding: 10px 20px;
         }
-
-        #overview {
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+        .navbar-title {
+            flex-grow: 1;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
-
-        #overview p {
-            margin: 0;
+        #chart-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-        /* Button-like styling for the map state areas */
-        .leaflet-interactive {
-            cursor: pointer;
+        #date-filter {
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <!-- Navbar will be loaded here if required -->
-    <div id="navbar-placeholder"></div>
-
-    <header>
-        <h1>Vice President Dashboard - Maintenance Severity</h1>
-    </header>
+    <nav class="navbar navbar-expand-lg navbar-gradient">
+        <a class="navbar-brand ms-3" href="#">
+            <img src="images/FedExLogo.png" alt="Brand Logo">
+        </a>
+        <div class="navbar-title mx-auto">
+            <span>Vice President Dashboard</span>
+        </div>
+    </nav>
 
     <!-- Map Section -->
     <div id="map"></div>
 
-    <!-- Fleet Details Section (Initially Hidden) -->
-    <section id="fleet-details">
+    <!-- Fleet Details Section -->
+    <section id="fleet-details" style="display: none;">
         <h2>Fleet Overview for <span id="state-name">[State]</span></h2>
         <div id="overview">
             <p><strong>Total Fleet Size:</strong> <span id="total-fleet-size"></span></p>
@@ -91,7 +63,21 @@
         </div>
     </section>
 
-    <!-- Leaflet JS -->
+    <!-- Date Filter -->
+    <section id="date-filter">
+        <h3>Filter Data by Date Range</h3>
+        <label for="date-range">Select Date Range (Minimum 1 year):</label>
+        <input type="date" id="start-date" value="2023-01-01">
+        <input type="date" id="end-date" value="2023-12-31">
+        <button onclick="updateChart()">Apply Filter</button>
+    </section>
+
+    <!-- Chart Section -->
+    <section id="chart-container" style="display: none;">
+        <h3>Monthly Maintenance Trends</h3>
+        <canvas id="maintenance-chart"></canvas>
+    </section>
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         const map = L.map('map').setView([37.8, -96], 4); // Center on USA
@@ -101,75 +87,102 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Sample state data with maintenance details
         const statesData = {
             "type": "FeatureCollection",
             "features": [
-                {
-                    "type": "Feature",
-                    "properties": { "name": "California", "maintenance": 50 },
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [[[-124.409591, 32.534156], [-114.131211, 32.534156], [-114.131211, 42.009518], [-124.409591, 42.009518], [-124.409591, 32.534156]]]
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "properties": { "name": "Florida", "maintenance": 20 },
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [[[-87.634938, 24.396308], [-80.031362, 24.396308], [-80.031362, 31.000968], [-87.634938, 31.000968], [-87.634938, 24.396308]]]
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "properties": { "name": "Texas", "maintenance": 80 },
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [[[-106.645646, 25.837377], [-93.508292, 25.837377], [-93.508292, 36.500704], [-106.645646, 36.500704], [-106.645646, 25.837377]]]
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "properties": { "name": "New York", "maintenance": 10 },
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [[[-79.76259, 40.477399], [-71.852706, 40.477399], [-71.852706, 45.01585], [-79.76259, 45.01585], [-79.76259, 40.477399]]]
-                    }
-                }
-                // Add more states here...
+                { "type": "Feature", "properties": { "name": "California", "maintenance": 50 }, "geometry": { "type": "Polygon", "coordinates": [[[-124.4, 32.5], [-114.1, 32.5], [-114.1, 42.0], [-124.4, 42.0], [-124.4, 32.5]]] }},
+                { "type": "Feature", "properties": { "name": "Texas", "maintenance": 80 }, "geometry": { "type": "Polygon", "coordinates": [[[-106.6, 25.8], [-93.5, 25.8], [-93.5, 36.5], [-106.6, 36.5], [-106.6, 25.8]]] }},
+                { "type": "Feature", "properties": { "name": "Florida", "maintenance": 20 }, "geometry": { "type": "Polygon", "coordinates": [[[-87.6, 24.4], [-80.0, 24.4], [-80.0, 31.0], [-87.6, 31.0], [-87.6, 24.4]]] }},
+                { "type": "Feature", "properties": { "name": "New York", "maintenance": 10 }, "geometry": { "type": "Polygon", "coordinates": [[[-79.8, 40.5], [-71.9, 40.5], [-71.9, 45.0], [-79.8, 45.0], [-79.8, 40.5]]] }}
             ]
         };
 
         const stateDetails = {
-            "California": {
-                fleetSize: "300 Vehicles",
-                vehiclesInService: "250",
-                vehiclesInMaintenance: "50"
-            },
-            "Florida": {
-                fleetSize: "200 Vehicles",
-                vehiclesInService: "180",
-                vehiclesInMaintenance: "20"
-            },
-            "Texas": {
-                fleetSize: "500 Vehicles",
-                vehiclesInService: "420",
-                vehiclesInMaintenance: "80"
-            },
-            "New York": {
-                fleetSize: "100 Vehicles",
-                vehiclesInService: "90",
-                vehiclesInMaintenance: "10"
-            }
+            "California": { fleetSize: "300 Vehicles", vehiclesInService: "250", vehiclesInMaintenance: "50" },
+            "Texas": { fleetSize: "500 Vehicles", vehiclesInService: "420", vehiclesInMaintenance: "80" },
+            "Florida": { fleetSize: "200 Vehicles", vehiclesInService: "180", vehiclesInMaintenance: "20" },
+            "New York": { fleetSize: "100 Vehicles", vehiclesInService: "90", vehiclesInMaintenance: "10" }
         };
+
+        let selectedState = null;
+        const chartContainer = document.getElementById('chart-container');
+        const ctx = document.getElementById('maintenance-chart').getContext('2d');
+        let maintenanceChart;
 
         function getColor(maintenanceCount) {
             return maintenanceCount > 75 ? '#800026' :
                    maintenanceCount > 50 ? '#BD0026' :
                    maintenanceCount > 25 ? '#E31A1C' :
-                   maintenanceCount > 10 ? '#FC4E2A' :
-                   '#FFEDA0'; // Light red for low maintenance
+                   maintenanceCount > 10 ? '#FC4E2A' : '#FFEDA0';
+        }
+
+        function showDetails(state) {
+            selectedState = state;
+            const details = stateDetails[state];
+            document.getElementById('state-name').innerText = state;
+            document.getElementById('total-fleet-size').innerText = details.fleetSize;
+            document.getElementById('vehicles-in-service').innerText = details.vehiclesInService;
+            document.getElementById('vehicles-in-maintenance').innerText = details.vehiclesInMaintenance;
+            document.getElementById('fleet-details').style.display = 'block';
+            chartContainer.style.display = 'block';
+            updateChart();
+        }
+
+        function simulateMonthlyData() {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return months.map(() => Math.floor(Math.random() * 100));
+        }
+
+        function updateChart() {
+            if (!selectedState) return;
+
+            const startDate = new Date(document.getElementById('start-date').value);
+            const endDate = new Date(document.getElementById('end-date').value);
+
+            if ((endDate - startDate) / (1000 * 60 * 60 * 24) < 365) {
+                alert("Please select a date range of at least one year.");
+                return;
+            }
+
+            const monthlyData = simulateMonthlyData();
+
+            if (maintenanceChart) maintenanceChart.destroy();
+
+            maintenanceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: `Maintenance Trends for ${selectedState}`,
+                        data: monthlyData,
+                        borderColor: '#f76804',
+                        backgroundColor: 'rgba(247, 104, 4, 0.2)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Months'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Maintenance Count'
+                            }
+                        }
+                    }
+                }
+            });
         }
 
         L.geoJSON(statesData, {
@@ -189,16 +202,6 @@
                 });
             }
         }).addTo(map);
-
-        function showDetails(state) {
-            const details = stateDetails[state];
-            document.getElementById('state-name').innerText = state;
-            document.getElementById('total-fleet-size').innerText = details.fleetSize;
-            document.getElementById('vehicles-in-service').innerText = details.vehiclesInService;
-            document.getElementById('vehicles-in-maintenance').innerText = details.vehiclesInMaintenance;
-
-            document.getElementById('fleet-details').style.display = 'block';
-        }
     </script>
 </body>
 </html>
