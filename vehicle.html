@@ -42,14 +42,12 @@
                     document.getElementById('vehicle-details').innerHTML = `
                         <div class="header-container">
                             <img src="${alertIcon}" alt="Alert Icon" class="alert-icon">
-                            <h1>${vehicle.maintenance == "" ? "No Maintenance Required" : vehicle.maintenance}</h1>
+                            <h1>${vehicle.maintenance == "" ? "No Maintenance Due" : vehicle.maintenance}</h1>
                         </div>
                         <p><strong>Vehicle ID:</strong> ${vehicleid}</p>
                         <p><strong>Make:</strong> ${vehicle.make}</p>
                         <p><strong>Model:</strong> ${vehicle.model}</p>
-                        <p><strong>Route:</strong> ${vehicle.route}</p>
                         <p><strong>Mileage:</strong> ${vehicle.mileage}</p>
-                        <p><strong>Driver ID:</strong> ${vehicle.driverid}</p>
                     `;
                 } else {
                     document.getElementById('vehicle-details').innerHTML = `

@@ -11,7 +11,7 @@
             { "stop_number": 4, "elapsed_time": 9, "distance_traveled": 1.5, "stop_time": 12 }
         ],
         "summary": { "total_miles_traveled": 12.9, "average_stop_time": 14.5, "total_stop_time": 58, "total_engine_idle_time": 45 },
-        "asset_number": "A12345", "vehicle_id": 1190
+        "station_number": "A12345", "vehicle_id": 1190
     },
     {
         "courier": { "id": 107, "name": "John Smith", "route_number": "R6" },
@@ -25,7 +25,7 @@
             { "stop_number": 4, "elapsed_time": 10, "distance_traveled": 2.2, "stop_time": 15 }
         ],
         "summary": { "total_miles_traveled": 12.7, "average_stop_time": 16.25, "total_stop_time": 65, "total_engine_idle_time": 50 },
-        "asset_number": "B98765", "vehicle_id": 1178
+        "station_number": "B98765", "vehicle_id": 1178
     },
     {
         "courier": { "id": 108, "name": "Olivia Green", "route_number": "R7" },
@@ -39,7 +39,7 @@
             { "stop_number": 4, "elapsed_time": 11, "distance_traveled": 2.3, "stop_time": 18 }
         ],
         "summary": { "total_miles_traveled": 9.2, "average_stop_time": 13.5, "total_stop_time": 54, "total_engine_idle_time": 38 },
-        "asset_number": "C23456", "vehicle_id": 1180
+        "station_number": "C23456", "vehicle_id": 1180
     },
     {
         "courier": { "id": 109, "name": "Sophia Lee", "route_number": "R8" },
@@ -53,7 +53,7 @@
             { "stop_number": 4, "elapsed_time": 8, "distance_traveled": 1.9, "stop_time": 12 }
         ],
         "summary": { "total_miles_traveled": 11.1, "average_stop_time": 13.25, "total_stop_time": 53, "total_engine_idle_time": 40 },
-        "asset_number": "D56789", "vehicle_id": 1200
+        "station_number": "D56789", "vehicle_id": 1200
     },
     {
         "courier": { "id": 110, "name": "Liam Brown", "route_number": "R9" },
@@ -67,7 +67,7 @@
             { "stop_number": 4, "elapsed_time": 8, "distance_traveled": 2.0, "stop_time": 14 }
         ],
         "summary": { "total_miles_traveled": 8.6, "average_stop_time": 13.25, "total_stop_time": 53, "total_engine_idle_time": 36 },
-        "asset_number": "E67890", "vehicle_id": 1212
+        "station_number": "E67890", "vehicle_id": 1212
     },
     {
         "courier": { "id": 111, "name": "Amelia White", "route_number": "R10, R50" },
@@ -81,7 +81,7 @@
             { "stop_number": 4, "elapsed_time": 10, "distance_traveled": 2.0, "stop_time": 14 }
         ],
         "summary": { "total_miles_traveled": 11.1, "average_stop_time": 15, "total_stop_time": 60, "total_engine_idle_time": 42 },
-        "asset_number": "F98765", "vehicle_id": 1215
+        "station_number": "F98765", "vehicle_id": 1215
     },
     {
         "courier": { "id": 112, "name": "Jackson Black", "route_number": "R11" },
@@ -95,7 +95,7 @@
             { "stop_number": 4, "elapsed_time": 9, "distance_traveled": 1.8, "stop_time": 14 }
         ],
         "summary": { "total_miles_traveled": 9.9, "average_stop_time": 13.25, "total_stop_time": 53, "total_engine_idle_time": 39 },
-        "asset_number": "G54321", "vehicle_id": 1223
+        "station_number": "G54321", "vehicle_id": 1223
     },
     {
         "courier": { "id": 113, "name": "Mia Hall", "route_number": "R12" },
@@ -109,7 +109,7 @@
             { "stop_number": 4, "elapsed_time": 11, "distance_traveled": 2.4, "stop_time": 18 }
         ],
         "summary": { "total_miles_traveled": 12.2, "average_stop_time": 15, "total_stop_time": 60, "total_engine_idle_time": 41 },
-        "asset_number": "H23456", "vehicle_id": 1232
+        "station_number": "H23456", "vehicle_id": 1232
     },
     {
         "courier": { "id": 114, "name": "Lucas Gray", "route_number": "R13" },
@@ -123,7 +123,7 @@
             { "stop_number": 4, "elapsed_time": 9, "distance_traveled": 2.3, "stop_time": 13 }
         ],
         "summary": { "total_miles_traveled": 12.8, "average_stop_time": 16.5, "total_stop_time": 66, "total_engine_idle_time": 47 },
-        "asset_number": "I34567", "vehicle_id": 1240
+        "station_number": "I34567", "vehicle_id": 1240
     },
     {
         "courier": { "id": 115, "name": "Ella Scott", "route_number": "R14" },
@@ -137,7 +137,7 @@
             { "stop_number": 4, "elapsed_time": 9, "distance_traveled": 2.4, "stop_time": 12 }
         ],
         "summary": { "total_miles_traveled": 10.9, "average_stop_time": 14.5, "total_stop_time": 56, "total_engine_idle_time": 39 },
-        "asset_number": "J45678", "vehicle_id": 1250
+        "station_number": "J45678", "vehicle_id": 1250
     },
     {
         "courier": { "id": 116, "name": "James Young", "route_number": "R15" },
@@ -151,7 +151,7 @@
             { "stop_number": 4, "elapsed_time": 8, "distance_traveled": 2.2, "stop_time": 14 }
         ],
         "summary": { "total_miles_traveled": 10.1, "average_stop_time": 13, "total_stop_time": 52, "total_engine_idle_time": 34 },
-        "asset_number": "K56789", "vehicle_id": 1260
+        "station_number": "K56789", "vehicle_id": 1260
     },
     {
         "courier": { "id": 117, "name": "Harper King", "route_number": "R16" },
@@ -165,6 +165,6 @@
             { "stop_number": 4, "elapsed_time": 9, "distance_traveled": 2.1, "stop_time": 16 }
         ],
         "summary": { "total_miles_traveled": 10.8, "average_stop_time": 14.5, "total_stop_time": 58, "total_engine_idle_time": 40 },
-        "asset_number": "L67890", "vehicle_id": 1270
+        "station_number": "L67890", "vehicle_id": 1270
     }
 ]

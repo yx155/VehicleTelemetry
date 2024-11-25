@@ -1,572 +1,226 @@
 [
   {
-    "alert": 0,
+    "alert": 1,
     "vehicleid": 1177,
     "make": "Ford",
     "model": "p900",
-    "route": 3,
     "maintenance": "Windshield Wipers",
     "mileage": 2579,
-    "driverid": 6156
+    "type": "gas",
+    "age": 4,
+    "idle": 45,
+    "due": "2024-12-15",
+    "lastMaintenance": "Tire Rotation",
+    "dateLastMaintenance": "2023-08-20"
   },
   {
     "alert": 0,
     "vehicleid": 1003,
     "make": "BrightDrop",
     "model": "Zevo 600",
-    "route": 3,
     "maintenance": "",
     "mileage": 1168,
-    "driverid": 6032
+    "type": "electric",
+    "age": 2,
+    "idle": 15,
+    "due": "",
+    "lastMaintenance": "Battery Check",
+    "dateLastMaintenance": "2024-03-10"
   },
   {
     "alert": 0,
     "vehicleid": 1190,
     "make": "Ford",
     "model": "E-Transit",
-    "route": 2,
     "maintenance": "",
     "mileage": 2590,
-    "driverid": 6183
+    "type": "electric",
+    "age": 3,
+    "idle": 30,
+    "due": "",
+    "lastMaintenance": "Brake Inspection",
+    "dateLastMaintenance": "2023-12-01"
   },
   {
-    "alert": -1,
+    "alert": 1,
     "vehicleid": 1178,
     "make": "Ford",
     "model": "p900",
-    "route": 4,
     "maintenance": "Oil change",
     "mileage": 2124,
-    "driverid": 6040
+    "type": "gas",
+    "age": 5,
+    "idle": 55,
+    "due": "2024-12-30",
+    "lastMaintenance": "Air Filter Replacement",
+    "dateLastMaintenance": "2024-02-15"
   },
   {
     "alert": 0,
     "vehicleid": 1067,
     "make": "BrightDrop",
     "model": "Zevo 600",
-    "route": 3,
     "maintenance": "",
     "mileage": 2550,
-    "driverid": 6013
+    "type": "electric",
+    "age": 3,
+    "idle": 20,
+    "due": "",
+    "lastMaintenance": "Tire Pressure Check",
+    "dateLastMaintenance": "2024-04-01"
   },
   {
     "alert": 0,
     "vehicleid": 1030,
     "make": "Ford",
     "model": "E-Transit",
-    "route": 1,
     "maintenance": "",
     "mileage": 2615,
-    "driverid": 6191
+    "type": "electric",
+    "age": 4,
+    "idle": 35,
+    "due": "",
+    "lastMaintenance": "Windshield Wipers Replacement",
+    "dateLastMaintenance": "2024-02-22"
   },
   {
     "alert": 0,
     "vehicleid": 1176,
     "make": "Ford",
     "model": "p900",
-    "route": 4,
     "maintenance": "",
     "mileage": 447,
-    "driverid": 6113
+    "type": "gas",
+    "age": 1,
+    "idle": 50,
+    "due": "",
+    "lastMaintenance": "Brake Fluid Change",
+    "dateLastMaintenance": "2024-07-15"
   },
   {
     "alert": 0,
     "vehicleid": 1080,
     "make": "BrightDrop",
     "model": "Zevo 600",
-    "route": 2,
     "maintenance": "",
     "mileage": 1077,
-    "driverid": 6061
+    "type": "electric",
+    "age": 1,
+    "idle": 10,
+    "due": "",
+    "lastMaintenance": "Battery Replacement",
+    "dateLastMaintenance": "2024-04-30"
   },
   {
     "alert": 0,
     "vehicleid": 1173,
     "make": "Ford",
     "model": "E-Transit",
-    "route": 3,
     "maintenance": "",
     "mileage": 1774,
-    "driverid": 6141
+    "type": "electric",
+    "age": 2,
+    "idle": 40,
+    "due": "",
+    "lastMaintenance": "Tire Rotation",
+    "dateLastMaintenance": "2024-06-01"
   },
   {
     "alert": -1,
     "vehicleid": 1149,
     "make": "Ford",
     "model": "p900",
-    "route": 3,
     "maintenance": "Oil change",
     "mileage": 1307,
-    "driverid": 6052
+    "type": "gas",
+    "age": 4,
+    "idle": 60,
+    "due": "2024-11-01",
+    "lastMaintenance": "Fuel Filter Replacement",
+    "dateLastMaintenance": "2024-03-25"
   },
   {
     "alert": 0,
     "vehicleid": 1049,
     "make": "BrightDrop",
     "model": "Zevo 600",
-    "route": 2,
     "maintenance": "",
     "mileage": 1678,
-    "driverid": 6140
+    "type": "electric",
+    "age": 3,
+    "idle": 25,
+    "due": "",
+    "lastMaintenance": "Coolant Flush",
+    "dateLastMaintenance": "2024-01-15"
   },
   {
     "alert": 0,
     "vehicleid": 1126,
     "make": "Ford",
     "model": "E-Transit",
-    "route": 2,
     "maintenance": "",
     "mileage": 2631,
-    "driverid": 6144
+    "type": "electric",
+    "age": 4,
+    "idle": 30,
+    "due": "",
+    "lastMaintenance": "Brake Pad Replacement",
+    "dateLastMaintenance": "2024-04-05"
   },
   {
     "alert": 0,
     "vehicleid": 1127,
     "make": "Ford",
     "model": "p900",
-    "route": 3,
     "maintenance": "",
     "mileage": 590,
-    "driverid": 6026
+    "type": "gas",
+    "age": 1,
+    "idle": 45,
+    "due": "",
+    "lastMaintenance": "Spark Plug Replacement",
+    "dateLastMaintenance": "2024-06-10"
   },
   {
     "alert": 0,
     "vehicleid": 1010,
     "make": "BrightDrop",
     "model": "p900",
-    "route": 1,
     "maintenance": "",
     "mileage": 287,
-    "driverid": 6161
+    "type": "electric",
+    "age": 1,
+    "idle": 10,
+    "due": "",
+    "lastMaintenance": "Tire Rotation",
+    "dateLastMaintenance": "2024-03-20"
   },
   {
     "alert": 0,
     "vehicleid": 1021,
     "make": "Ford",
     "model": "Zevo 600",
-    "route": 3,
     "maintenance": "",
     "mileage": 1166,
-    "driverid": 6089
+    "type": "electric",
+    "age": 2,
+    "idle": 20,
+    "due": "",
+    "lastMaintenance": "Brake Inspection",
+    "dateLastMaintenance": "2024-05-15"
   },
   {
     "alert": 0,
     "vehicleid": 1090,
     "make": "Ford",
     "model": "E-Transit",
-    "route": 2,
     "maintenance": "",
     "mileage": 2369,
-    "driverid": 6022
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1157,
-    "make": "BrightDrop",
-    "model": "p900",
-    "route": 2,
-    "maintenance": "",
-    "mileage": 1539,
-    "driverid": 6000
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1111,
-    "make": "Ford",
-    "model": "Zevo 600",
-    "route": 4,
-    "maintenance": "",
-    "mileage": 987,
-    "driverid": 6160
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1174,
-    "make": "Ford",
-    "model": "E-Transit",
-    "route": 2,
-    "maintenance": "",
-    "mileage": 1642,
-    "driverid": 6066
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1004,
-    "make": "BrightDrop",
-    "model": "p900",
-    "route": 3,
-    "maintenance": "",
-    "mileage": 1628,
-    "driverid": 6070
-  },
-  {
-    "alert": 1,
-    "vehicleid": 1183,
-    "make": "Ford",
-    "model": "Zevo 600",
-    "route": 4,
-    "maintenance": "Windshield Wipers",
-    "mileage": 2663,
-    "driverid": 6020
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1074,
-    "make": "Ford",
-    "model": "E-Transit",
-    "route": 4,
-    "maintenance": "",
-    "mileage": 1715,
-    "driverid": 6172
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1195,
-    "make": "BrightDrop",
-    "model": "p900",
-    "route": 3,
-    "maintenance": "",
-    "mileage": 731,
-    "driverid": 6045
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1061,
-    "make": "Ford",
-    "model": "Zevo 600",
-    "route": 2,
-    "maintenance": "",
-    "mileage": 115,
-    "driverid": 6067
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1189,
-    "make": "Ford",
-    "model": "E-Transit",
-    "route": 3,
-    "maintenance": "",
-    "mileage": 157,
-    "driverid": 6134
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1184,
-    "make": "BrightDrop",
-    "model": "p900",
-    "route": 3,
-    "maintenance": "",
-    "mileage": 861,
-    "driverid": 6009
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1015,
-    "make": "Ford",
-    "model": "p900",
-    "route": 2,
-    "maintenance": "",
-    "mileage": 393,
-    "driverid": 6151
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1182,
-    "make": "Ford",
-    "model": "Zevo 600",
-    "route": 4,
-    "maintenance": "",
-    "mileage": 1570,
-    "driverid": 6116
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1025,
-    "make": "BrightDrop",
-    "model": "E-Transit",
-    "route": 4,
-    "maintenance": "",
-    "mileage": 2049,
-    "driverid": 6128
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1185,
-    "make": "Ford",
-    "model": "p900",
-    "route": 3,
-    "maintenance": "",
-    "mileage": 2962,
-    "driverid": 6106
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1060,
-    "make": "Ford",
-    "model": "Zevo 600",
-    "route": 4,
-    "maintenance": "",
-    "mileage": 2490,
-    "driverid": 6195
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1034,
-    "make": "BrightDrop",
-    "model": "E-Transit",
-    "route": 2,
-    "maintenance": "",
-    "mileage": 2894,
-    "driverid": 6024
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1108,
-    "make": "Ford",
-    "model": "p900",
-    "route": 4,
-    "maintenance": "",
-    "mileage": 1484,
-    "driverid": 6017
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1148,
-    "make": "Ford",
-    "model": "Zevo 600",
-    "route": 2,
-    "maintenance": "",
-    "mileage": 845,
-    "driverid": 6121
-  },
-  {
-    "alert": 1,
-    "vehicleid": 1197,
-    "make": "BrightDrop",
-    "model": "E-Transit",
-    "route": 3,
-    "maintenance": "Windshield Wipers",
-    "mileage": 1089,
-    "driverid": 6088
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1140,
-    "make": "Ford",
-    "model": "p900",
-    "route": 3,
-    "maintenance": "",
-    "mileage": 1631,
-    "driverid": 6039
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1002,
-    "make": "Ford",
-    "model": "Zevo 600",
-    "route": 1,
-    "maintenance": "",
-    "mileage": 2844,
-    "driverid": 6069
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1109,
-    "make": "BrightDrop",
-    "model": "E-Transit",
-    "route": 4,
-    "maintenance": "",
-    "mileage": 2403,
-    "driverid": 6142
-  },
-  {
-    "alert": 1,
-    "vehicleid": 1106,
-    "make": "Ford",
-    "model": "p900",
-    "route": 2,
-    "maintenance": "Windshield Wipers",
-    "mileage": 2922,
-    "driverid": 6074
-  },
-  {
-    "alert": -1,
-    "vehicleid": 1058,
-    "make": "Ford",
-    "model": "p900",
-    "route": 4,
-    "maintenance": "Battery Replacement",
-    "mileage": 938,
-    "driverid": 6164
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1082,
-    "make": "BrightDrop",
-    "model": "Zevo 600",
-    "route": 3,
-    "maintenance": "",
-    "mileage": 1709,
-    "driverid": 6036
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1007,
-    "make": "Ford",
-    "model": "E-Transit",
-    "route": 4,
-    "maintenance": "",
-    "mileage": 2959,
-    "driverid": 6054
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1180,
-    "make": "Ford",
-    "model": "p900",
-    "route": 4,
-    "maintenance": "",
-    "mileage": 2576,
-    "driverid": 6110
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1068,
-    "make": "BrightDrop",
-    "model": "Zevo 600",
-    "route": 2,
-    "maintenance": "",
-    "mileage": 167,
-    "driverid": 6087
-  },
-  {
-    "alert": 1,
-    "vehicleid": 1193,
-    "make": "Ford",
-    "model": "E-Transit",
-    "route": 1,
-    "maintenance": "Windshield Wipers",
-    "mileage": 877,
-    "driverid": 6126
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1063,
-    "make": "Ford",
-    "model": "p900",
-    "route": 1,
-    "maintenance": "",
-    "mileage": 559,
-    "driverid": 6127
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1066,
-    "make": "BrightDrop",
-    "model": "Zevo 600",
-    "route": 3,
-    "maintenance": "",
-    "mileage": 1131,
-    "driverid": 6155
-  },
-  {
-    "alert": -1,
-    "vehicleid": 1187,
-    "make": "Ford",
-    "model": "E-Transit",
-    "route": 4,
-    "maintenance": "Tire Replacement",
-    "mileage": 394,
-    "driverid": 6073
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1095,
-    "make": "Ford",
-    "model": "p900",
-    "route": 4,
-    "maintenance": "",
-    "mileage": 2207,
-    "driverid": 6176
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1050,
-    "make": "BrightDrop",
-    "model": "Zevo 600",
-    "route": 3,
-    "maintenance": "",
-    "mileage": 1200,
-    "driverid": 6053
-  },
-  {
-    "alert": 1,
-    "vehicleid": 1169,
-    "make": "Ford",
-    "model": "E-Transit",
-    "route": 4,
-    "maintenance": "Windshield Wipers",
-    "mileage": 2279,
-    "driverid": 6153
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1170,
-    "make": "Ford",
-    "model": "p900",
-    "route": 1,
-    "maintenance": "",
-    "mileage": 2812,
-    "driverid": 6197
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1064,
-    "make": "BrightDrop",
-    "model": "p900",
-    "route": 3,
-    "maintenance": "",
-    "mileage": 2063,
-    "driverid": 6064
-  },
-  {
-    "alert": 1,
-    "vehicleid": 1175,
-    "make": "Ford",
-    "model": "Zevo 600",
-    "route": 3,
-    "maintenance": "Windshield Wipers",
-    "mileage": 1518,
-    "driverid": 6015
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1065,
-    "make": "Ford",
-    "model": "E-Transit",
-    "route": 1,
-    "maintenance": "",
-    "mileage": 700,
-    "driverid": 6097
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1069,
-    "make": "BrightDrop",
-    "model": "p900",
-    "route": 4,
-    "maintenance": "",
-    "mileage": 2541,
-    "driverid": 6044
-  },
-  {
-    "alert": 0,
-    "vehicleid": 1164,
-    "make": "Ford",
-    "model": "Zevo 600",
-    "route": 2,
-    "maintenance": "",
-    "mileage": 1288,
-    "driverid": 6023
+    "type": "electric",
+    "age": 3,
+    "idle": 30,
+    "due": "",
+    "lastMaintenance": "Windshield Wipers Replacement",
+    "dateLastMaintenance": "2023-11-05"
   }
 ]

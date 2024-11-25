@@ -24,14 +24,8 @@
             </select>
         </div>
         <div class="filter-container">
-            <label for="route-filter" class="filter-label">Route</label>
-            <select id="route-filter" class="form-select">
-                <option value="">All</option>
-            </select>
-        </div>
-        <div class="filter-container">
-            <label for="maintenance-filter" class="filter-label">Maintenance</label>
-            <select id="maintenance-filter" class="form-select">
+            <label for="type-filter" class="filter-label">Powertrain</label>
+            <select id="type-filter" class="form-select">
                 <option value="">All</option>
             </select>
         </div>
@@ -40,8 +34,12 @@
             <input type="text" id="vehicleid-filter" class="form-control" placeholder="Enter ID">
         </div>
         <div class="filter-container">
-            <label for="driverid-filter" class="filter-label">Driver ID</label>
-            <input type="text" id="driverid-filter" class="form-control" placeholder="Enter ID">
+            <label for="start-date-filter" class="filter-label">Start Date</label>
+            <input type="date" id="start-date-filter" class="form-control">
+        </div>
+        <div class="filter-container">
+            <label for="end-date-filter" class="filter-label">End Date</label>
+            <input type="date" id="end-date-filter" class="form-control">
         </div>
         <button class="btn btn-clear-filters ms-3" onclick="clearFilters()">Clear Filters</button>
     </div>
@@ -55,10 +53,10 @@
                     <th>Vehicle ID</th>
                     <th>Make</th>
                     <th>Model</th>
-                    <th>Route</th>
-                    <th>Maintenance</th>
+                    <th>Powertrain</th>
                     <th>Mileage</th>
-                    <th>Driver ID</th>
+                    <th>Last Maintenance</th>
+                    <th>Date Last Maintenance</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,8 +84,7 @@
                 
                 const makes = new Set();
                 const models = new Set();
-                const routes = new Set();
-                const maintenances = new Set();
+                const types = new Set();
 
                 data.forEach(vehicle => {
                     const row = document.createElement('tr');
@@ -108,10 +105,10 @@
                     const vehicleid = document.createElement('td');
                     const make = document.createElement('td');
                     const model = document.createElement('td');
-                    const route = document.createElement('td');
-                    const maintenance = document.createElement('td');
+                    const type = document.createElement('td');
                     const mileage = document.createElement('td');
-                    const driverid = document.createElement('td');
+                    const lastMaintenance = document.createElement('td');
+                    const dateLastMaintenance = document.createElement('td');
 
                     const vehicleLink = document.createElement('a');
                     vehicleLink.href = `vehicle.html?vehicleid=${vehicle.vehicleid}&source=maintenance`;
@@ -121,32 +118,30 @@
 
                     make.textContent = vehicle.make;
                     model.textContent = vehicle.model;
-                    route.textContent = vehicle.route;
-                    maintenance.textContent = vehicle.maintenance;
+                    type.textContent = vehicle.type;
                     mileage.textContent = vehicle.mileage;
-                    driverid.textContent = vehicle.driverid;
+                    lastMaintenance.textContent = vehicle.lastMaintenance;
+                    dateLastMaintenance.textContent = vehicle.dateLastMaintenance;
 
                     row.appendChild(alert);
                     row.appendChild(vehicleid);
                     row.appendChild(make);
                     row.appendChild(model);
-                    row.appendChild(route);
-                    row.appendChild(maintenance);
+                    row.appendChild(type);
                     row.appendChild(mileage);
-                    row.appendChild(driverid);
+                    row.appendChild(lastMaintenance);
+                    row.appendChild(dateLastMaintenance);
 
                     tableBody.appendChild(row);
 
                     makes.add(vehicle.make);
                     models.add(vehicle.model);
-                    routes.add(vehicle.route);
-                    maintenances.add(vehicle.maintenance);
+                    types.add(vehicle.type);
                 });
 
                 populateFilterOptions('make-filter', makes);
                 populateFilterOptions('model-filter', models);
-                populateFilterOptions('route-filter', routes);
-                populateFilterOptions('maintenance-filter', maintenances);
+                populateFilterOptions('type-filter', types);
             })
             .catch(error => console.error('Error loading JSON data:', error));
 
@@ -162,10 +157,10 @@
 
         document.getElementById('make-filter').addEventListener('change', addFilter);
         document.getElementById('model-filter').addEventListener('change', addFilter);
-        document.getElementById('route-filter').addEventListener('change', addFilter);
-        document.getElementById('maintenance-filter').addEventListener('change', addFilter);
+        document.getElementById('type-filter').addEventListener('change', addFilter);
         document.getElementById('vehicleid-filter').addEventListener('input', addFilter);
-        document.getElementById('driverid-filter').addEventListener('input', addFilter);
+        document.getElementById('start-date-filter').addEventListener('input', addFilter);
+        document.getElementById('end-date-filter').addEventListener('input', addFilter);
 
         function addFilter() {
             document.getElementById('all-stations').classList.add('d-none');
@@ -175,28 +170,29 @@
         function filterTable() {
             const makeFilter = document.getElementById('make-filter').value.toLowerCase();
             const modelFilter = document.getElementById('model-filter').value.toLowerCase();
-            const routeFilter = document.getElementById('route-filter').value.toLowerCase();
-            const maintenanceFilter = document.getElementById('maintenance-filter').value.toLowerCase();
+            const typeFilter = document.getElementById('type-filter').value.toLowerCase();
             const vehicleidFilter = document.getElementById('vehicleid-filter').value.toLowerCase();
-            const driveridFilter = document.getElementById('driverid-filter').value.toLowerCase();
-
+            const startDateFilter = document.getElementById('start-date-filter').value;
+            const endDateFilter = document.getElementById('end-date-filter').value;
 
             const rows = document.querySelectorAll('#maintenance-table tbody tr');
             rows.forEach(row => {
                 const make = row.cells[2].textContent.toLowerCase();
                 const model = row.cells[3].textContent.toLowerCase();
-                const route = row.cells[4].textContent.toLowerCase();
-                const maintenance = row.cells[5].textContent.toLowerCase();
+                const type = row.cells[4].textContent.toLowerCase();
                 const vehicleid = row.cells[1].textContent.toLowerCase();
-                const driverid = row.cells[7].textContent.toLowerCase();
+                const dateLastMaintenance = row.cells[7].textContent.trim();
+
+                let isDateInRange = true;
+                if (startDateFilter && dateLastMaintenance < startDateFilter) isDateInRange = false;
+                if (endDateFilter && dateLastMaintenance > endDateFilter) isDateInRange = false;
 
                 row.style.display = 
                     (makeFilter === '' || make === makeFilter) &&
                     (modelFilter === '' || model === modelFilter) &&
-                    (routeFilter === '' || route === routeFilter) &&
-                    (maintenanceFilter === '' || maintenance === maintenanceFilter) &&
+                    (typeFilter === '' || type === typeFilter) &&
                     (vehicleidFilter === '' || vehicleid.includes(vehicleidFilter)) &&
-                    (driveridFilter === '' || driverid.includes(driveridFilter))
+                    isDateInRange
                     ? '' : 'none';
             });
         }
@@ -204,10 +200,10 @@
         function clearFilters() {
             document.getElementById('make-filter').value = '';
             document.getElementById('model-filter').value = '';
-            document.getElementById('route-filter').value = '';
-            document.getElementById('maintenance-filter').value = '';
+            document.getElementById('type-filter').value = '';
             document.getElementById('vehicleid-filter').value = '';
-            document.getElementById('driverid-filter').value = '';
+            document.getElementById('start-date-filter').value = '';
+            document.getElementById('end-date-filter').value = '';
             document.getElementById('all-stations').classList.remove('d-none');
             filterTable();
         }
@@ -218,9 +214,9 @@
             width: 80px;
         }
         .filter-container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
         .filter-label {
             font-weight: bold;
@@ -247,7 +243,7 @@
         }
         .filter-section-container {
             margin-top: 20px;
-            margin-left: 80px;
+            margin-left: 90px;
         }
         .form-control {
             min-width: 150px;
