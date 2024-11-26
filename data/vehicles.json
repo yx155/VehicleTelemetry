@@ -9,9 +9,9 @@
     "type": "gas",
     "age": 4,
     "idle": 45,
-    "due": "2024-12-15",
+    "due": "12/15/2024",
     "lastMaintenance": "Tire Rotation",
-    "dateLastMaintenance": "2023-08-20"
+    "dateLastMaintenance": "08/20/2023"
   },
   {
     "alert": 0,
@@ -25,7 +25,7 @@
     "idle": 15,
     "due": "",
     "lastMaintenance": "Battery Check",
-    "dateLastMaintenance": "2024-03-10"
+    "dateLastMaintenance": "03/10/2024"
   },
   {
     "alert": 0,
@@ -39,7 +39,7 @@
     "idle": 30,
     "due": "",
     "lastMaintenance": "Brake Inspection",
-    "dateLastMaintenance": "2023-12-01"
+    "dateLastMaintenance": "12/01/2023"
   },
   {
     "alert": 1,
@@ -51,9 +51,9 @@
     "type": "gas",
     "age": 5,
     "idle": 55,
-    "due": "2024-12-30",
+    "due": "12/30/2024",
     "lastMaintenance": "Air Filter Replacement",
-    "dateLastMaintenance": "2024-02-15"
+    "dateLastMaintenance": "02/15/2024"
   },
   {
     "alert": 0,
@@ -67,7 +67,7 @@
     "idle": 20,
     "due": "",
     "lastMaintenance": "Tire Pressure Check",
-    "dateLastMaintenance": "2024-04-01"
+    "dateLastMaintenance": "04/01/2024"
   },
   {
     "alert": 0,
@@ -81,7 +81,7 @@
     "idle": 35,
     "due": "",
     "lastMaintenance": "Windshield Wipers Replacement",
-    "dateLastMaintenance": "2024-02-22"
+    "dateLastMaintenance": "02/22/2024"
   },
   {
     "alert": 0,
@@ -95,7 +95,7 @@
     "idle": 50,
     "due": "",
     "lastMaintenance": "Brake Fluid Change",
-    "dateLastMaintenance": "2024-07-15"
+    "dateLastMaintenance": "07/15/2024"
   },
   {
     "alert": 0,
@@ -109,7 +109,7 @@
     "idle": 10,
     "due": "",
     "lastMaintenance": "Battery Replacement",
-    "dateLastMaintenance": "2024-04-30"
+    "dateLastMaintenance": "04/30/2024"
   },
   {
     "alert": 0,
@@ -123,7 +123,7 @@
     "idle": 40,
     "due": "",
     "lastMaintenance": "Tire Rotation",
-    "dateLastMaintenance": "2024-06-01"
+    "dateLastMaintenance": "06/01/2024"
   },
   {
     "alert": -1,
@@ -135,9 +135,9 @@
     "type": "gas",
     "age": 4,
     "idle": 60,
-    "due": "2024-11-01",
+    "due": "11/01/2024",
     "lastMaintenance": "Fuel Filter Replacement",
-    "dateLastMaintenance": "2024-03-25"
+    "dateLastMaintenance": "03/25/2024"
   },
   {
     "alert": 0,
@@ -151,7 +151,7 @@
     "idle": 25,
     "due": "",
     "lastMaintenance": "Coolant Flush",
-    "dateLastMaintenance": "2024-01-15"
+    "dateLastMaintenance": "01/15/2024"
   },
   {
     "alert": 0,
@@ -165,7 +165,7 @@
     "idle": 30,
     "due": "",
     "lastMaintenance": "Brake Pad Replacement",
-    "dateLastMaintenance": "2024-04-05"
+    "dateLastMaintenance": "04/05/2024"
   },
   {
     "alert": 0,
@@ -179,7 +179,7 @@
     "idle": 45,
     "due": "",
     "lastMaintenance": "Spark Plug Replacement",
-    "dateLastMaintenance": "2024-06-10"
+    "dateLastMaintenance": "06/10/2024"
   },
   {
     "alert": 0,
@@ -193,7 +193,7 @@
     "idle": 10,
     "due": "",
     "lastMaintenance": "Tire Rotation",
-    "dateLastMaintenance": "2024-03-20"
+    "dateLastMaintenance": "03/20/2024"
   },
   {
     "alert": 0,
@@ -207,7 +207,7 @@
     "idle": 20,
     "due": "",
     "lastMaintenance": "Brake Inspection",
-    "dateLastMaintenance": "2024-05-15"
+    "dateLastMaintenance": "05/15/2024"
   },
   {
     "alert": 0,
@@ -221,6 +221,6 @@
     "idle": 30,
     "due": "",
     "lastMaintenance": "Windshield Wipers Replacement",
-    "dateLastMaintenance": "2023-11-05"
+    "dateLastMaintenance": "11/05/2023"
   }
 ]
