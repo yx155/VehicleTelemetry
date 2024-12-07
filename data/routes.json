@@ -1,6 +1,6 @@
 [
     {
-        "courier": { "id": 106, "name": "Emma Davis", "route_number": "R4, R5" },
+        "courier": { "id": 106, "name": "Emma Davis", "route_number": "R5" },
         "date": "11/08/2024",
         "departure_time": "08:00",
         "return_time": "15:45",
@@ -70,7 +70,7 @@
         "station_number": "E67890", "vehicle_id": 1080
     },
     {
-        "courier": { "id": 111, "name": "Amelia White", "route_number": "R10, R50" },
+        "courier": { "id": 111, "name": "Amelia White", "route_number": "R10" },
         "date": "11/13/2024",
         "departure_time": "06:45",
         "return_time": "13:30",
