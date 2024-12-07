@@ -1,9 +1,9 @@
 [
     {
         "courier": { "id": 106, "name": "Emma Davis", "route_number": "R4, R5" },
-        "date": "2024-11-08",
-        "departure_time": "2024-11-08 08:00",
-        "return_time": "2024-11-08 15:45",
+        "date": "11/08/2024",
+        "departure_time": "08:00",
+        "return_time": "15:45",
         "stops": [
             { "stop_number": 1, "elapsed_time": 12, "distance_traveled": 3.5, "stop_time": 15 },
             { "stop_number": 2, "elapsed_time": 10, "distance_traveled": 2.8, "stop_time": 10 },
@@ -15,9 +15,9 @@
     },
     {
         "courier": { "id": 107, "name": "John Smith", "route_number": "R6" },
-        "date": "2024-11-09",
-        "departure_time": "2024-11-09 09:30",
-        "return_time": "2024-11-09 17:00",
+        "date": "11/09/2024",
+        "departure_time": "09:30",
+        "return_time": "17:00",
         "stops": [
             { "stop_number": 1, "elapsed_time": 15, "distance_traveled": 3.0, "stop_time": 18 },
             { "stop_number": 2, "elapsed_time": 14, "distance_traveled": 3.5, "stop_time": 10 },
@@ -29,9 +29,9 @@
     },
     {
         "courier": { "id": 108, "name": "Olivia Green", "route_number": "R7" },
-        "date": "2024-11-10",
-        "departure_time": "2024-11-10 07:30",
-        "return_time": "2024-11-10 14:15",
+        "date": "11/10/2024",
+        "departure_time": "07:30",
+        "return_time": "14:15",
         "stops": [
             { "stop_number": 1, "elapsed_time": 9, "distance_traveled": 2.1, "stop_time": 10 },
             { "stop_number": 2, "elapsed_time": 8, "distance_traveled": 1.8, "stop_time": 12 },
@@ -39,13 +39,13 @@
             { "stop_number": 4, "elapsed_time": 11, "distance_traveled": 2.3, "stop_time": 18 }
         ],
         "summary": { "total_miles_traveled": 9.2, "average_stop_time": 13.5, "total_stop_time": 54, "total_engine_idle_time": 38 },
-        "station_number": "C23456", "vehicle_id": 1180
+        "station_number": "C23456", "vehicle_id": 1067
     },
     {
         "courier": { "id": 109, "name": "Sophia Lee", "route_number": "R8" },
-        "date": "2024-11-11",
-        "departure_time": "2024-11-11 08:00",
-        "return_time": "2024-11-11 16:30",
+        "date": "11/11/2024",
+        "departure_time": "08:00",
+        "return_time": "16:30",
         "stops": [
             { "stop_number": 1, "elapsed_time": 13, "distance_traveled": 3.4, "stop_time": 14 },
             { "stop_number": 2, "elapsed_time": 10, "distance_traveled": 2.6, "stop_time": 9 },
@@ -53,13 +53,13 @@
             { "stop_number": 4, "elapsed_time": 8, "distance_traveled": 1.9, "stop_time": 12 }
         ],
         "summary": { "total_miles_traveled": 11.1, "average_stop_time": 13.25, "total_stop_time": 53, "total_engine_idle_time": 40 },
-        "station_number": "D56789", "vehicle_id": 1200
+        "station_number": "D56789", "vehicle_id": 1030
     },
     {
         "courier": { "id": 110, "name": "Liam Brown", "route_number": "R9" },
-        "date": "2024-11-12",
-        "departure_time": "2024-11-12 07:15",
-        "return_time": "2024-11-12 14:45",
+        "date": "11/12/2024",
+        "departure_time": "07:15",
+        "return_time": "14:45",
         "stops": [
             { "stop_number": 1, "elapsed_time": 11, "distance_traveled": 2.3, "stop_time": 13 },
             { "stop_number": 2, "elapsed_time": 9, "distance_traveled": 1.8, "stop_time": 10 },
@@ -67,13 +67,13 @@
             { "stop_number": 4, "elapsed_time": 8, "distance_traveled": 2.0, "stop_time": 14 }
         ],
         "summary": { "total_miles_traveled": 8.6, "average_stop_time": 13.25, "total_stop_time": 53, "total_engine_idle_time": 36 },
-        "station_number": "E67890", "vehicle_id": 1212
+        "station_number": "E67890", "vehicle_id": 1080
     },
     {
         "courier": { "id": 111, "name": "Amelia White", "route_number": "R10, R50" },
-        "date": "2024-11-13",
-        "departure_time": "2024-11-13 06:45",
-        "return_time": "2024-11-13 13:30",
+        "date": "11/13/2024",
+        "departure_time": "06:45",
+        "return_time": "13:30",
         "stops": [
             { "stop_number": 1, "elapsed_time": 14, "distance_traveled": 3.1, "stop_time": 16 },
             { "stop_number": 2, "elapsed_time": 11, "distance_traveled": 2.7, "stop_time": 10 },
@@ -81,13 +81,13 @@
             { "stop_number": 4, "elapsed_time": 10, "distance_traveled": 2.0, "stop_time": 14 }
         ],
         "summary": { "total_miles_traveled": 11.1, "average_stop_time": 15, "total_stop_time": 60, "total_engine_idle_time": 42 },
-        "station_number": "F98765", "vehicle_id": 1215
+        "station_number": "F98765", "vehicle_id": 1127
     },
     {
         "courier": { "id": 112, "name": "Jackson Black", "route_number": "R11" },
-        "date": "2024-11-14",
-        "departure_time": "2024-11-14 08:15",
-        "return_time": "2024-11-14 16:00",
+        "date": "11/14/2024",
+        "departure_time": "08:15",
+        "return_time": "16:00",
         "stops": [
             { "stop_number": 1, "elapsed_time": 13, "distance_traveled": 2.9, "stop_time": 15 },
             { "stop_number": 2, "elapsed_time": 12, "distance_traveled": 3.0, "stop_time": 13 },
@@ -95,13 +95,13 @@
             { "stop_number": 4, "elapsed_time": 9, "distance_traveled": 1.8, "stop_time": 14 }
         ],
         "summary": { "total_miles_traveled": 9.9, "average_stop_time": 13.25, "total_stop_time": 53, "total_engine_idle_time": 39 },
-        "station_number": "G54321", "vehicle_id": 1223
+        "station_number": "G54321", "vehicle_id": 1176
     },
     {
         "courier": { "id": 113, "name": "Mia Hall", "route_number": "R12" },
-        "date": "2024-11-15",
-        "departure_time": "2024-11-15 07:45",
-        "return_time": "2024-11-15 15:00",
+        "date": "11/15/2024",
+        "departure_time": "07:45",
+        "return_time": "15:00",
         "stops": [
             { "stop_number": 1, "elapsed_time": 14, "distance_traveled": 3.3, "stop_time": 14 },
             { "stop_number": 2, "elapsed_time": 13, "distance_traveled": 2.9, "stop_time": 12 },
@@ -109,13 +109,13 @@
             { "stop_number": 4, "elapsed_time": 11, "distance_traveled": 2.4, "stop_time": 18 }
         ],
         "summary": { "total_miles_traveled": 12.2, "average_stop_time": 15, "total_stop_time": 60, "total_engine_idle_time": 41 },
-        "station_number": "H23456", "vehicle_id": 1232
+        "station_number": "H23456", "vehicle_id": 1021
     },
     {
         "courier": { "id": 114, "name": "Lucas Gray", "route_number": "R13" },
-        "date": "2024-11-16",
-        "departure_time": "2024-11-16 09:00",
-        "return_time": "2024-11-16 16:30",
+        "date": "11/16/2024",
+        "departure_time": "09:00",
+        "return_time": "16:30",
         "stops": [
             { "stop_number": 1, "elapsed_time": 12, "distance_traveled": 3.2, "stop_time": 15 },
             { "stop_number": 2, "elapsed_time": 14, "distance_traveled": 3.5, "stop_time": 18 },
@@ -123,13 +123,13 @@
             { "stop_number": 4, "elapsed_time": 9, "distance_traveled": 2.3, "stop_time": 13 }
         ],
         "summary": { "total_miles_traveled": 12.8, "average_stop_time": 16.5, "total_stop_time": 66, "total_engine_idle_time": 47 },
-        "station_number": "I34567", "vehicle_id": 1240
+        "station_number": "I34567", "vehicle_id": 1010
     },
     {
         "courier": { "id": 115, "name": "Ella Scott", "route_number": "R14" },
-        "date": "2024-11-17",
-        "departure_time": "2024-11-17 08:30",
-        "return_time": "2024-11-17 17:00",
+        "date": "11/17/2024",
+        "departure_time": "08:30",
+        "return_time": "17:00",
         "stops": [
             { "stop_number": 1, "elapsed_time": 10, "distance_traveled": 2.5, "stop_time": 13 },
             { "stop_number": 2, "elapsed_time": 8, "distance_traveled": 2.1, "stop_time": 14 },
@@ -137,13 +137,13 @@
             { "stop_number": 4, "elapsed_time": 9, "distance_traveled": 2.4, "stop_time": 12 }
         ],
         "summary": { "total_miles_traveled": 10.9, "average_stop_time": 14.5, "total_stop_time": 56, "total_engine_idle_time": 39 },
-        "station_number": "J45678", "vehicle_id": 1250
+        "station_number": "J45678", "vehicle_id": 1049
     },
     {
         "courier": { "id": 116, "name": "James Young", "route_number": "R15" },
-        "date": "2024-11-18",
-        "departure_time": "2024-11-18 06:45",
-        "return_time": "2024-11-18 14:30",
+        "date": "11/18/2024",
+        "departure_time": "06:45",
+        "return_time": "14:30",
         "stops": [
             { "stop_number": 1, "elapsed_time": 9, "distance_traveled": 2.0, "stop_time": 12 },
             { "stop_number": 2, "elapsed_time": 12, "distance_traveled": 2.8, "stop_time": 11 },
@@ -151,13 +151,13 @@
             { "stop_number": 4, "elapsed_time": 8, "distance_traveled": 2.2, "stop_time": 14 }
         ],
         "summary": { "total_miles_traveled": 10.1, "average_stop_time": 13, "total_stop_time": 52, "total_engine_idle_time": 34 },
-        "station_number": "K56789", "vehicle_id": 1260
+        "station_number": "K56789", "vehicle_id": 1149
     },
     {
         "courier": { "id": 117, "name": "Harper King", "route_number": "R16" },
-        "date": "2024-11-19",
-        "departure_time": "2024-11-19 07:15",
-        "return_time": "2024-11-19 15:00",
+        "date": "11/19/2024",
+        "departure_time": "07:15",
+        "return_time": "15:00",
         "stops": [
             { "stop_number": 1, "elapsed_time": 14, "distance_traveled": 3.2, "stop_time": 15 },
             { "stop_number": 2, "elapsed_time": 10, "distance_traveled": 2.6, "stop_time": 13 },
@@ -165,6 +165,6 @@
             { "stop_number": 4, "elapsed_time": 9, "distance_traveled": 2.1, "stop_time": 16 }
         ],
         "summary": { "total_miles_traveled": 10.8, "average_stop_time": 14.5, "total_stop_time": 58, "total_engine_idle_time": 40 },
-        "station_number": "L67890", "vehicle_id": 1270
+        "station_number": "L67890", "vehicle_id": 1003
     }
 ]
