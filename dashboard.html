@@ -36,6 +36,21 @@
         </div>
     </div>
 
+    <div class="modal fade" id="vehicleDetailsModal" tabindex="-1" aria-labelledby="vehicleDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="vehicleDetailsModalLabel">Vehicle Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="vehicle-details"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         fetch('navbar.html')
             .then(response => response.text())
@@ -83,14 +98,21 @@
                             <img src="${alertIcon}" style="width: 20px; height: 20px;">
                         </td>
                         <td>
-                            <a href="vehicle.html?vehicleid=${vehicle.vehicleid}" style="color: #007bff;"> ${vehicle.vehicleid} </a>
+                            <span class="vehicle-id" style="color: #007bff; cursor: pointer; text-decoration: underline;">${vehicle.vehicleid}</span>
                         </td>
                         <td>${vehicle.maintenance}</td>`;
+                    const vehicleIdElement = row.querySelector('.vehicle-id');
+                    vehicleIdElement.addEventListener('click', function() {
+                        showVehicleDetails(vehicle.vehicleid);
+                    });
                     vehicleTable.appendChild(row);
                 });
             })
         .catch(error => console.error('Error fetching vehicle data:', error));
     </script>
+    <script src="vehicle-modal.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
     <style>
         .alert-icon-column {

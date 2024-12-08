@@ -9,7 +9,27 @@
 </head>
 <body>
     <div id="navbar-placeholder"></div>
-    
+
+    <div class="filter-section-container d-flex mb-4 justify-content-center gap-3">
+        <div class="filter-container">
+            <label for="start-date-filter" class="filter-label">Start Date</label>
+            <input type="date" id="start-date-filter" class="form-control">
+        </div>
+        <div class="filter-container">
+            <label for="end-date-filter" class="filter-label">End Date</label>
+            <input type="date" id="end-date-filter" class="form-control">
+        </div>
+        <div class="filter-container">
+            <label for="courierid-filter" class="filter-label">Courier ID</label>
+            <input type="text" id="courierid-filter" class="form-control" placeholder="Enter ID">
+        </div>
+        <div class="filter-container">
+            <label for="route-filter" class="filter-label">Route</label>
+            <input type="text" id="route-filter" class="form-control" placeholder="Enter Route">
+        </div>
+        <button class="btn btn-clear-filters ms-3" onclick="clearFilters()">Clear Filters</button>
+    </div>
+
     <div class="container mt-5">
         <table class="table table-bordered table-main" id="routes-table">
             <thead>
@@ -109,51 +129,93 @@
             })
             .catch(error => console.error('Error loading JSON data:', error));
 
-        function showVehicleDetails(vehicleid) {
-            fetch('data/vehicles.json')
-                .then(response => response.json())
-                .then(data => {
-                    const vehicle = data.find(v => v.vehicleid == vehicleid);
-                    if (vehicle) {
-                        const alertIcon = vehicle.alert === 0 
-                            ? 'images/success.png' 
-                            : vehicle.alert === -1 
-                                ? 'images/warning.png' 
-                                : 'images/caution.png';
-                        
-                        const vehicleDetailsContent = `
-                            <div class="header-container">
-                                <img src="${alertIcon}" alt="Alert Icon" class="alert-icon">
-                                <h1>${vehicle.maintenance == "" ? "No Maintenance Due" : vehicle.maintenance + " due " + vehicle.due}</h1>
-                            </div>
-                            <p><strong>Vehicle ID:</strong> ${vehicle.vehicleid}</p>
-                            <p><strong>Make:</strong> ${vehicle.make}</p>
-                            <p><strong>Model:</strong> ${vehicle.model}</p>
-                            <p><strong>Powertrain:</strong> ${vehicle.type}</p>
-                            <p><strong>Mileage:</strong> ${vehicle.mileage}</p>
-                            <p><strong>Years in FedEx Service:</strong> ${vehicle.age}</p>
-                            <p><strong>Average Engine Idle Time (minutes):</strong> ${vehicle.idle}</p>
-                            <p><strong>Last Maintenance:</strong> ${vehicle.lastMaintenance}</p>
-                            <p><strong>Date Last Maintenance:</strong> ${vehicle.dateLastMaintenance}</p>
-                        `;
-                        document.getElementById('vehicle-details').innerHTML = vehicleDetailsContent;
-                    } else {
-                        document.getElementById('vehicle-details').innerHTML = `
-                            <h1>Vehicle not found</h1>
-                        `;
-                    }
-                })
-                .catch(error => console.error('Error loading vehicle data:', error));
-            
-            const myModal = new bootstrap.Modal(document.getElementById('vehicleDetailsModal'));
-            myModal.show();
+        document.getElementById('start-date-filter').addEventListener('input', filterTable);
+        document.getElementById('end-date-filter').addEventListener('input', filterTable);
+        document.getElementById('courierid-filter').addEventListener('input', filterTable);
+        document.getElementById('route-filter').addEventListener('input', filterTable);
+
+        function filterTable() {
+            const startDateFilter = document.getElementById('start-date-filter').value;
+            const endDateFilter = document.getElementById('end-date-filter').value;
+            const courieridFilter = document.getElementById('courierid-filter').value.toLowerCase();
+            const routeFiler = document.getElementById('route-filter').value.toLowerCase();
+
+
+            const rows = document.querySelectorAll('#routes-table tbody tr');
+            rows.forEach(row => {
+                const date = row.cells[0].textContent.trim();
+                const courierid = row.cells[1].textContent.toLowerCase();
+                const route = row.cells[3].textContent.toLowerCase();
+
+            const routeDate = new Date(date);
+            let isDateInRange = true;
+            if (startDateFilter) {
+                const startDate = new Date(startDateFilter);
+                if (routeDate < startDate) isDateInRange = false;
+            }
+            if (endDateFilter) {
+                const endDate = new Date(endDateFilter);
+                if (routeDate > endDate) isDateInRange = false;
+            }
+
+            row.style.display = 
+                isDateInRange &&
+                (courieridFilter === '' || courierid.includes(courieridFilter)) &&
+                (routeFiler === '' || route.includes(routeFiler))
+                ? '' : 'none';
+            });
+        }
+
+        function clearFilters() {
+            document.getElementById('start-date-filter').value = '';
+            document.getElementById('end-date-filter').value = '';
+            document.getElementById('courierid-filter').value = '';
+            document.getElementById('route-filter').value = '';
+            filterTable();
         }
     </script>
+    <script src="vehicle-modal.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
+    
     <style>
-       
+        .filter-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .filter-label {
+            font-weight: bold;
+            color: #4d148b;
+            margin-bottom: 4px;
+        }
+        .form-select {
+            min-width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .btn-clear-filters {
+            background-color: #f76804;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            margin-top: 28px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .btn-clear-filters:hover {
+            background-color: #e65702;
+        }
+        .filter-section-container {
+            margin-top: 20px;            
+        }
+        .form-control {
+            min-width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </body>
 </html>

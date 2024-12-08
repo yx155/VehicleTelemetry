@@ -131,7 +131,7 @@
                     vehicleLink.style.textDecoration = 'underline';
                     vehicleLink.style.cursor = 'pointer';
                     vehicleLink.addEventListener('click', function() {
-                            showVehicleDetails(vehicle);
+                            showVehicleDetails(vehicle.vehicleid);
                     });
                     vehicleid.appendChild(vehicleLink);
 
@@ -172,34 +172,6 @@
                 opt.textContent = option;
                 select.appendChild(opt);
             });
-        }
-
-        function showVehicleDetails(vehicle) {
-            const alertIcon = vehicle.alert === 0 
-                ? 'images/success.png' 
-                : vehicle.alert === -1 
-                    ? 'images/warning.png' 
-                    : 'images/caution.png';
-            
-            const vehicleDetailsContent = `
-                <div class="header-container">
-                    <img src="${alertIcon}" alt="Alert Icon" class="alert-icon">
-                    <h1>${vehicle.maintenance == "" ? "No Maintenance Due" : vehicle.maintenance + " due " + vehicle.due}</h1>
-                </div>
-                <p><strong>Vehicle ID:</strong> ${vehicle.vehicleid}</p>
-                <p><strong>Make:</strong> ${vehicle.make}</p>
-                <p><strong>Model:</strong> ${vehicle.model}</p>
-                <p><strong>Powertrain:</strong> ${vehicle.type}</p>
-                <p><strong>Mileage:</strong> ${vehicle.mileage}</p>
-                <p><strong>Years in FedEx Service:</strong> ${vehicle.age}</p>
-                <p><strong>Average Engine Idle Time (minutes):</strong> ${vehicle.idle}</p>
-                <p><strong>Last Maintenance:</strong> ${vehicle.lastMaintenance}</p>
-                <p><strong>Date Last Maintenance:</strong> ${vehicle.dateLastMaintenance}</p>
-            `;
-        
-            document.getElementById('vehicle-details').innerHTML = vehicleDetailsContent;
-            const myModal = new bootstrap.Modal(document.getElementById('vehicleDetailsModal'));
-            myModal.show();
         }
 
         document.getElementById('make-filter').addEventListener('change', addFilter);
@@ -262,6 +234,7 @@
             filterTable();
         }
     </script>
+    <script src="vehicle-modal.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 

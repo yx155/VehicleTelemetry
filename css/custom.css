@@ -11,12 +11,10 @@
     font-weight: bold;
     size: 5px;
 }
-
 .table-main thead th {
     background-color: #f76804 !important;
     color: white;
 }
-
 .back-button {
     background: none;
     border: none;
@@ -24,4 +22,9 @@
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
+}
+.form-control {
+    min-width: 150px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
