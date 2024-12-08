@@ -27,6 +27,12 @@
             <label for="route-filter" class="filter-label">Route</label>
             <input type="text" id="route-filter" class="form-control" placeholder="Enter Route">
         </div>
+        <div class="filter-container">
+            <label for="station-filter" class="filter-label">Station</label>
+            <select id="station-filter" class="form-select">
+                <option value="">All</option>
+            </select>
+        </div>
         <button class="btn btn-clear-filters ms-3" onclick="clearFilters()">Clear Filters</button>
     </div>
 
@@ -38,6 +44,7 @@
                     <th>Courier ID</th>
                     <th>Courier Name</th>
                     <th>Route</th>
+                    <th>Station</th>
                     <th>Vehicle ID</th>
                     <th>Departure Time</th>
                     <th>Return Time</th>
@@ -79,6 +86,8 @@
                 data.sort((a, b) => new Date(b.date) - new Date(a.date));
                 const tableBody = document.getElementById('routes-table').getElementsByTagName('tbody')[0];
 
+                const stations = new Set();
+
                 data.forEach(r => {
                     const row = document.createElement('tr');
 
@@ -86,6 +95,7 @@
                     const courierid = document.createElement('td');
                     const courierName = document.createElement('td');
                     const route = document.createElement('td');
+                    const station = document.createElement('td');
                     const vehicleid = document.createElement('td');
                     const departureTime = document.createElement('td');
                     const returnTime = document.createElement('td');
@@ -106,6 +116,7 @@
                     courierid.textContent = r.courier.id;
                     courierName.textContent = r.courier.name;
                     route.textContent = r.courier.route_number;
+                    station.textContent = r.station_number;
                     departureTime.textContent = r.departure_time;
                     returnTime.textContent = r.return_time;
 
@@ -119,26 +130,43 @@
                     row.appendChild(courierid);
                     row.appendChild(courierName);
                     row.appendChild(route);
+                    row.appendChild(station);
                     row.appendChild(vehicleid);
                     row.appendChild(departureTime);
                     row.appendChild(returnTime);
                     row.appendChild(details);
 
                     tableBody.appendChild(row);
+
+                    stations.add(r.station_number);
                 });
+
+                populateFilterOptions('station-filter', stations);
             })
             .catch(error => console.error('Error loading JSON data:', error));
+
+        function populateFilterOptions(selectId, options) {
+            const select = document.getElementById(selectId);
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.textContent = option;
+                select.appendChild(opt);
+            });
+        }
 
         document.getElementById('start-date-filter').addEventListener('input', filterTable);
         document.getElementById('end-date-filter').addEventListener('input', filterTable);
         document.getElementById('courierid-filter').addEventListener('input', filterTable);
         document.getElementById('route-filter').addEventListener('input', filterTable);
+        document.getElementById('station-filter').addEventListener('change', filterTable);
 
         function filterTable() {
             const startDateFilter = document.getElementById('start-date-filter').value;
             const endDateFilter = document.getElementById('end-date-filter').value;
             const courieridFilter = document.getElementById('courierid-filter').value.toLowerCase();
             const routeFiler = document.getElementById('route-filter').value.toLowerCase();
+            const stationFilter = document.getElementById('station-filter').value.toLowerCase();
 
 
             const rows = document.querySelectorAll('#routes-table tbody tr');
@@ -146,6 +174,7 @@
                 const date = row.cells[0].textContent.trim();
                 const courierid = row.cells[1].textContent.toLowerCase();
                 const route = row.cells[3].textContent.toLowerCase();
+                const station = row.cells[4].textContent.toLowerCase();
 
             const routeDate = new Date(date);
             let isDateInRange = true;
@@ -161,7 +190,8 @@
             row.style.display = 
                 isDateInRange &&
                 (courieridFilter === '' || courierid.includes(courieridFilter)) &&
-                (routeFiler === '' || route.includes(routeFiler))
+                (routeFiler === '' || route.includes(routeFiler)) &&
+                (stationFilter === '' || station === stationFilter)
                 ? '' : 'none';
             });
         }
@@ -171,6 +201,7 @@
             document.getElementById('end-date-filter').value = '';
             document.getElementById('courierid-filter').value = '';
             document.getElementById('route-filter').value = '';
+            document.getElementById('station-filter').value = '';
             filterTable();
         }
     </script>

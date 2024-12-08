@@ -56,25 +56,26 @@
                         
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="courier-info">
-                                    <h3>Courier Information</h3>
+                                <div class="general-info">
+                                    <h3>General Information</h3>
                                     <p><strong>Courier ID:</strong> ${routeData.courier.id}</p>
                                     <p><strong>Courier Name:</strong> ${routeData.courier.name}</p>
-                                    <p><strong>Vehicle ID:</strong> 
-                                        <span class="vehicle-id" style="color: #007bff; cursor: pointer; text-decoration: underline;">
-                                            ${routeData.vehicle_id}
-                                        </span>
-                                    </p>
+                                    <p><strong>Route Number:</strong> ${routeData.courier.route_number}</p>
+                                    <p><strong>Station Number:</strong> ${routeData.station_number}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="trip-info">
                                     <h3>Trip Details</h3>
+                                    <p><strong>Date:</strong> ${routeData.date}</p>
                                     <p><strong>Departure Time:</strong> ${routeData.departure_time}</p>
                                     <p><strong>Return Time:</strong> ${routeData.return_time}</p>
-                                    <p><strong>Route Number:</strong> ${routeData.courier.route_number}</p>
-                                    <p><strong>Station Number:</strong> ${routeData.station_number}</p>
+                                    <p><strong>Vehicle ID:</strong> 
+                                        <span class="vehicle-id" style="color: #007bff; cursor: pointer; text-decoration: underline;">
+                                            ${routeData.vehicle_id}
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
                             
@@ -136,5 +137,23 @@
     <script src="vehicle-modal.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <style>
+        .container {
+            max-width: 1100px;
+        }
+        .general-info, .trip-info, .summary {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+    </style>
 </body>
 </html>
