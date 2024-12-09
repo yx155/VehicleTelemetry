@@ -16,7 +16,7 @@ function showVehicleDetails(vehicleid) {
                         <img src="${alertIcon}" alt="Alert Icon" class="alert-icon">
                         <h1>${vehicle.maintenance == "" ? "No Maintenance Due" : vehicle.maintenance + " due " + vehicle.due}</h1>
                     </div>
-                    <p><strong>Vehicle ID:</strong> ${vehicle.vehicleid}</p>
+                    <h3>Vehicle ID: ${vehicle.vehicleid}</h3>
                     <p><strong>Make:</strong> ${vehicle.make}</p>
                     <p><strong>Model:</strong> ${vehicle.model}</p>
                     <p><strong>Powertrain:</strong> ${vehicle.type}</p>

@@ -11,17 +11,43 @@
 <body>
     <div id="navbar-placeholder"></div>
 
+    <div style="position: absolute">
+        <button id="notificationButton" class="btn btn-primary rounded-button" style="left: 20px; position: relative; padding-right: 40px;">
+            Notifications
+            <img src="images/warning.png" alt="Warning" style="position: absolute; top: 5px; right: 5px; width: 20px; height: 20px;">
+        </button>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6 d-flex justify-content-start mb-4 gap-3">
+                <div class="filter-container">
+                    <label for="vehicleid-filter" class="filter-label">Vehicle ID</label>
+                    <input type="text" id="vehicleid-filter" class="form-control" placeholder="Enter ID">
+                </div>
+                <div class="filter-container">
+                    <label for="maintenance-filter" class="filter-label">Maintenance</label>
+                    <select id="maintenance-filter" class="form-select">
+                        <option value="">All</option>
+                    </select>
+                </div>
+                <button class="btn btn-clear-filters ms-3" onclick="clearFilters()">Clear Filters</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-6 d-flex justify-content-center">
-                <div style="width: 300px;">
+                <div style="width: 370px;">
                     <canvas id="alertPieChart"></canvas>
                 </div>
             </div>
-            
             <div class="col-md-6">
                 <h3>Vehicle Alerts</h3>
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="alertsTable">
                     <thead class="thead-dark">
                         <tr>
                             <th></th>
@@ -51,6 +77,22 @@
         </div>
     </div>
 
+    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationsModalLabel">Notifications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="notifications-list">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         fetch('navbar.html')
             .then(response => response.text())
@@ -67,7 +109,7 @@
                 labels: ['Normal', 'Warning', 'Critical'],
                 datasets: [{
                     data: [90.3, 6.9, 2.8],
-                    backgroundColor: ['#28a745', '#ff8c00', '#dc3545'],
+                    backgroundColor: ['#28a745', '#e0b404', '#dc3545'],
                     borderWidth: 1
                 }]
             },
@@ -77,6 +119,11 @@
                     legend: {
                         display: true,
                         position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 17
+                            }
+                        }
                     },
                 }
             }
@@ -90,6 +137,7 @@
                     .sort((a, b) => a.alert - b.alert);
                 const vehicleTable = document.getElementById('vehicleTable');
                 vehicleTable.innerHTML = '';
+                const maintenance = new Set();
                 filteredData.forEach(vehicle => {
                     const row = document.createElement('tr');
                     const alertIcon = vehicle.alert === -1 ? 'images/warning.png' : 'images/caution.png';
@@ -106,9 +154,84 @@
                         showVehicleDetails(vehicle.vehicleid);
                     });
                     vehicleTable.appendChild(row);
+                    maintenance.add(vehicle.maintenance);
                 });
+
+                populateFilterOptions('maintenance-filter', maintenance);
             })
-        .catch(error => console.error('Error fetching vehicle data:', error));
+            .catch(error => console.error('Error fetching vehicle data:', error));
+
+        function populateFilterOptions(selectId, options) {
+            const select = document.getElementById(selectId);
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.textContent = option;
+                select.appendChild(opt);
+            });
+        }
+
+        document.getElementById('vehicleid-filter').addEventListener('input', filterTable);
+        document.getElementById('maintenance-filter').addEventListener('change', filterTable);
+
+        function filterTable() {
+            const vehicleidFilter = document.getElementById('vehicleid-filter').value.toLowerCase();
+            const maintenanceFilter = document.getElementById('maintenance-filter').value.toLowerCase();
+
+            const rows = document.querySelectorAll('#alertsTable tbody tr');
+            rows.forEach(row => {
+                const vehicleid = row.cells[1].textContent.toLowerCase();
+                const maintenance = row.cells[2].textContent.toLowerCase();
+
+            row.style.display = 
+                (vehicleidFilter === '' || vehicleid.includes(vehicleidFilter)) &&
+                (maintenanceFilter === '' || maintenance === maintenanceFilter)
+                ? '' : 'none';
+            });
+        }
+
+        function clearFilters() {
+            document.getElementById('vehicleid-filter').value = '';
+            document.getElementById('maintenance-filter').value = '';
+            filterTable();
+        }
+
+        document.getElementById('notificationButton').addEventListener('click', function() {
+            fetch('data/notifications.json')
+                .then(response => response.json())
+                .then(notifications => {
+                    const notificationsList = document.getElementById('notifications-list');
+                    notificationsList.innerHTML = '';
+
+                    if (notifications.length === 0) {
+                        notificationsList.innerHTML = '<p>No new notifications.</p>';
+                    } else {
+                        notifications.forEach(notification => {
+                            const notificationItem = document.createElement('div');
+                            notificationItem.classList.add('alert', 'alert-info');
+                            
+                            const vehicleIdTitle = document.createElement('strong');
+                            vehicleIdTitle.innerText = `Vehicle ID: ${notification.vehicleid}`;
+                            notificationItem.appendChild(vehicleIdTitle);
+
+                            const message = document.createElement('div');
+                            message.innerText = notification.message;
+                            notificationItem.appendChild(message);
+
+                            notificationItem.addEventListener('click', function() {
+                                showVehicleDetails(notification.vehicleid);
+                            });
+
+                            notificationsList.appendChild(notificationItem);
+                            notificationItem.style.cursor = 'pointer';
+                        });
+                    }
+
+                    const notificationsModal = new bootstrap.Modal(document.getElementById('notificationsModal'));
+                    notificationsModal.show();
+                })
+                .catch(error => console.error('Error loading notifications:', error));
+        });
     </script>
     <script src="vehicle-modal.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -118,6 +241,46 @@
         .alert-icon-column {
             width: 50px;
             text-align: center;
+        }
+        #vehicleDetailsModal {
+            z-index: 1060 !important;
+        }
+        .filter-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .filter-label {
+            font-weight: bold;
+            color: #4d148b;
+            margin-bottom: 4px;
+        }
+        .form-select {
+            min-width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .btn-clear-filters {
+            background-color: #f76804;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            margin-top: 28px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .btn-clear-filters:hover {
+            background-color: #e65702;
+        }
+        .filter-section-container {
+            margin-top: 20px;
+            margin-left: 90px;
+        }
+        .form-control {
+            min-width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
 </body>
