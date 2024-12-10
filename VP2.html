@@ -46,6 +46,14 @@
         .btn-logout:hover {
             color: #4d148b;
         }
+        .btn-apply-filter {
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -80,7 +88,7 @@
         <label for="date-range">Select Date Range (Minimum 1 year):</label>
         <input type="date" id="start-date" value="2023-01-01">
         <input type="date" id="end-date" value="2023-12-31">
-        <button onclick="updateChart()">Apply Filter</button>
+        <button class="btn btn-apply-filter btn-primary" onclick="updateChart()">Apply Filter</button>
     </section>
 
     <!-- Chart Section -->
